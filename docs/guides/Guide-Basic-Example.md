@@ -1,10 +1,10 @@
 # Hello Mobile Navigation
 
-Let's use React Navigation to build a simple chat-like application for Android and iOS.
+让我们来用React Navigation建立一个Android iOS通用的仿聊天应用吧。
 
-## Setup and Installation
+## 开始安装
 
-First, make sure you're [all set up to use React Native](http://facebook.github.io/react-native/docs/getting-started.html). Next, create a new project and add `react-navigation`:
+首先请确保你已经[正确配置使用React Native](http://facebook.github.io/react-native/docs/getting-started.html)。然后创建一个新的项目以及添加`react-navigation`。
 
 ```sh
 # Create a new React Native App
@@ -20,7 +20,7 @@ react-native run-android
 react-native run-ios
 ```
 
-If you are using `create-react-native-app` instead of `react-native init`, then:
+如果你要使用`create-react-native-app`来代替`react-native init`，那么：
 
 ```sh
 # Create a new React Native App
@@ -36,17 +36,17 @@ npm start
 # This will start a development server for you and print a QR code in your terminal.
 ```
 
-Verify that you can successfully see the bare sample app run on iOS and/or Android:
+确认你的项目已经成功在iOS和Android上运行起来，如下:
 
 ```phone-example
 bare-project
 ```
 
-We want to share code on iOS and Android, so let's delete the contents of `index.js` (or `index.ios.js` and `index.android.js` if using a React Native version before 0.49) and replace it with `import './App';` - after which, we need to create the new file for our app implementation, `App.js` (if you used `create-react-native-app` this has been already done)
+我们想要共享iOS和Android代码所以让我们删掉`index.js`内容(如果是0.49版本以前就是`index.ios.js`和`index.android.js`)而用`import './App';`方式替换调。然后我们创建一个新的文件命名为`App.js`来实现。(如果你已经成功执行了`create-react-native-app`)
 
-## Introducing Stack Navigator
+## Stack Navigator介绍：
 
-For our app, we want to use the `StackNavigator` because conceptually we want to obtain a 'card stack' effect of movement, where each new screen is put on the top of the stack and going back removes a screen from the top of the stack. Let's start with just one screen:
+我们的app将使用`StackNavigator`因为一般来说我们会希望拥有卡片栈式的切换效果，即新页面会被放置栈顶以及返回时优先删除栈顶页面。下面我们来实现一个页面：
 
 ```js
 import React from 'react';
@@ -72,7 +72,7 @@ export const SimpleApp = StackNavigator({
 AppRegistry.registerComponent('SimpleApp', () => SimpleApp);
 ```
 
-If you used `create-react-native-app` the already existing `App.js` will be modified to
+如果你已经执行了`create-react-native-app`，那么上面建的`App.js`页面将修改为：
 
 ```js
 import React from 'react';
@@ -109,17 +109,17 @@ const styles = StyleSheet.create({
 
 ```
 
-The `title` of the screen is configurable on the [static `navigationOptions`](/docs/navigators/navigation-options), where many options can be set to configure the presentation of the screen in the navigator.
+页面的标题在[static `navigationOptions`](/docs/navigators/navigation-options)配置。此处可配置许多导航器内页面的各种展现方式。
 
-Now the same screen should appear on both iPhone and Android apps:
+现在iPhone和Android的app都已经展示相同的页面：
 
 ```phone-example
 first-screen
 ```
 
-## Adding a New Screen
+## 增加一个新页面：
 
-In our `App.js` file, let's add a new screen called `ChatScreen`, defining it under `HomeScreen`:
+现在我们在`App.js`文件里增加个新页面`ChatScreen`，定义在`HomeScreen`之下。
 
 ```js
 // ...
@@ -143,7 +143,8 @@ class ChatScreen extends React.Component {
 
 ```
 
-We can then add a button to our `HomeScreen` component that links to `ChatScreen`: we need to use the provided method `navigate` (from the [screen navigation prop](/docs/navigators/navigation-prop)) by giving it the `routeName` of the screen we want to reach, in this case `Chat`.
+我们可以在`HomeScreen`增加个按钮组件来连接`ChatScreen`，我们需要给`navigate`方法(从页面[navigation属性](/docs/navigators/navigation-prop)获得)提供我们想要跳转页面的`routeName`，本例里是`Chat`。
+
 
 ```js
 class HomeScreen extends React.Component {
@@ -165,9 +166,9 @@ class HomeScreen extends React.Component {
 }
 ```
 
-(*don't forget to import View and Button from react-native:* `import { AppRegistry, Text, View, Button } from 'react-native';`)
+(不要忘了从react-native引入View和Button。* `import { AppRegistry, Text, View, Button } from 'react-native';`)
 
-But that won't work until we say to our `StackNavigator` of the existence of the `Chat` screen, like so:
+但这仍然不会工作，直到我们告诉`StackNavigator`新`Chat`页面的存在，如下:
 
 ```js
 export const SimpleApp = StackNavigator({
@@ -176,17 +177,17 @@ export const SimpleApp = StackNavigator({
 });
 ```
 
-Now you can navigate to your new screen, and go back:
+现在你可以导航到你的新页面，然后返回。
 
 ```phone-example
 first-navigation
 ```
 
-## Passing params
+## 传递参数
 
-Hardcoding a name into the `ChatScreen` isn't ideal. It'd be more useful if we could pass a name to be rendered instead, so let's do that.
+在`ChatScreen`页面写死名字不够理想，更常用的是我们传入名字属性来展示，让我们开始吧。
 
-In addition to specifying the target `routeName` in the navigate function, we can pass params that will be put into the new route. First, we'll edit our `HomeScreen` component to pass a `user` param into the route.
+除了在navigate方法里指定`routeName`之外，我们还可以传递新页面所需要的参数。首先我们编辑`HomeScreen`组件来传递一个`user`参数到路由。
 
 ```js
 class HomeScreen extends React.Component {
@@ -208,7 +209,7 @@ class HomeScreen extends React.Component {
 }
 ```
 
-We can then edit our `ChatScreen` component to display the `user` param that was passed in through the route:
+然后我们可以编辑`ChatScreen`组件来展示我们通过路由传递的`user`参数：
 
 ```js
 class ChatScreen extends React.Component {
@@ -228,7 +229,7 @@ class ChatScreen extends React.Component {
 }
 ```
 
-Now you can see the name when you navigate to the Chat screen. Try changing the `user` param in `HomeScreen` and see what happens!
+现在当你跳转到`Chat`页面时可以看到新页面名字了。尝试修改`user`参数看看会发生什么吧！
 
 ```phone-example
 first-navigation

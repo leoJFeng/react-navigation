@@ -1,10 +1,10 @@
 # Transitioner
 
-`Transitioner` is a React component that helps manage transitions for complex animated components. It manages the timing of animations and keeps track of various screens as they enter and leave, but it doesn't know what anything looks like, because rendering is entirely deferred to the developer.
+`Transitioner`是一个帮助管理复杂动效组件的切换效果。它管理这动画时间，保持追踪页面的进入和退出，但它完全不知道改如何展示，因为这完全取决于开发者想要如何渲染。
 
-Under the covers, `Transitioner` is used to implement `CardStack`, and hence the `StackNavigator`.
+底层`Transitioner`使用`CardStack`和`StackNavigator`的增强版组合实现。
 
-The most useful thing `Transitioner` does is to take in a prop of the current navigation state. When routes are removed from that navigation state, `Transitioner` will coordinate the transition away from those routes, keeping them on screen even though they are gone from the navigation state.
+`Transitioner`最有用的是获取当前导航状态。 当从那个导航状态中路由被删除时，`Transitioner`将协助这些路由的过渡动画，即使它们从导航状态不存在了也能保持在页面显示。
 
 
 ## Example
@@ -29,7 +29,7 @@ class MyNavView extends Component {
 
 ### `configureTransition` function
 
-Invoked on `Transitioner.componentWillReceiveProps`, this function allows customization of animation parameters such as `duration`. The value returned from this function will be fed into a timing function, by default `Animated.timing()`, as its config.
+在`Transitioner.componentWillReceiveProps`上调用时，此函数允许自定义动画参数（如持续时间）。 该函数返回的值将被输入一个定时函数，默认情况下是`Animated.timing()`，作为它的配置。
 
 #### Examples
 
@@ -44,7 +44,7 @@ _configureTransition(transitionProps, prevTransitionProps) {
 }
 ```
 
-Note: `duration` and `easing` are only applicable when the timing function is `Animated.timing`. We can also use a different timing function and its corresponding config parameters, like so:
+注意：`duration`和`easing`仅适用于定时功能为`Animated.timing`。 我们还可以使用不同的定时功能及其相应的配置参数，如下所示：
 
 ```js
 _configureTransition(transitionProps, prevTransitionProps) {
@@ -68,15 +68,15 @@ _configureTransition(transitionProps, prevTransitionProps) {
 ```
 
 #### Parameters
-- `transitionProps`: the current [NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273) created from the current navigation state and props
-- `prevTransitionProps`: the previous [NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273) created from the previous navigation state and props
+- `transitionProps`: 从当前导航状态和属性创建的[NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)
+- `prevTransitionProps`: 先前导航状态和属性创建的[NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)
 
 #### Returns
-- An object of type [NavigationTransitionSpec](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L316) that will be fed into an Animated timing function as its config
+- 一个类型为[NavigationTransitionSpec](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L316)的对象，它将作为配置提供到Animated timing 函数中
 
 
 ### `navigation` prop
-An object with `state` that represents the navigation state, with `routes` and an active route `index`. Also includes `dispatch` and other methods for requesting actions.
+带有`state`的对象，表示导航状态，包含`routes`和活动的路由索引`index`。 还包括`dispatch`和其他请求操作的方法。
 
 #### Example value
 
@@ -99,22 +99,22 @@ export type NavigationState = {
 };
 ```
 
-For more information about the `NavigationRoute` type, check out its [flow definition](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L32).
+关于`NavigationRoute`更多信息，请查看[flow definition](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L32)
 
 ### `render` function
-Invoked from `Transitioner.render()`. This function performs the actual rendering delegated from `Transitioner`. In this function, we can use the information included in the `transitionProps` and `prevTransitionProps` parameters to render scenes, create animations and handle gestures.
+调用`Transitioner.render()`方法。该方法展示从`Transitioner`委托的实际渲染。在这个方法，我们可以使用像`transitionProps`和`prevTransitionProps`参数来渲染页面，创建动效和处理手势。
 
-There are a few important properties of the `transitionProps` and `prevTransitionProps` parameters that are useful for the tasks mentioned above:
+这里有几个`transitionProps`和`prevTransitionProps`很重要的参数对上面所述的事件很有帮助。
 
-- `scenes: Array<NavigationScene>` - a list of all available scenes
-- `position: NavigationAnimatedValue` - the progressive index of the transitioner's navigation state
-- `progress: NavigationAnimatedValue` - the value that represents the progress of the transition when navigation state changes from one to another. Its numeric value will range from 0 to 1.
+- `scenes: Array<NavigationScene>` - 所有可用scenes的列表
+- `position: NavigationAnimatedValue` - transitioner导航状态的渐进索引
+- `progress: NavigationAnimatedValue` - 表示导航状态从一个变为另一个时转换进度的值。 其数值范围从0到1
 
-For the complete list of properties of `NavigationTransitionProps`, check out its [flow definition](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273).
+要获取NavigationTransitionProps完整的属性列表，查看[flow definition](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)。
 
 #### Examples
 
-`transitionProps.scenes` is the list of all available scenes. It is up to the implementor to determine how to lay them out on the screen. For example, we can render the scenes as a stack of cards like so:
+`transitionProps.scenes`是所有可用scenes的列表。 由开发者决定如何将它们放在屏幕上。 例如，我们可以将场景渲染为一堆卡页，如下所示：
 
 ```jsx
 _render(transitionProps, prevTransitionProps) {
@@ -127,7 +127,7 @@ _render(transitionProps, prevTransitionProps) {
 }
 ```
 
-We can then use an `Animated.View` to animate the transition. To create necessary animated style properties, such as `opacity`, we can interpolate on `position` and `progress` values that come with `transitionProps`:
+然后，我们可以使用`Animated.View`来设置切换动画。 要创建必要的动画样式属性（例如不透明度），我们可以插入`transitionProps`附带的`position`和`progress`：
 
 ```jsx
 _renderScene(transitionProps, scene) {
@@ -147,9 +147,9 @@ _renderScene(transitionProps, scene) {
 }
 ```
 
-The above code creates a cross fade animation during transition.
+上述代码创建了一个切换时渐变消失的动画。
 
-For a comprehensive tutorial on how to create custom transitions, see this [blog post](http://www.reactnativediary.com/2016/12/20/navigation-experimental-custom-transition-1.html).
+有关如何创建自定义转换的综合教程，请参阅[此博客文章](http://www.reactnativediary.com/2016/12/20/navigation-experimental-custom-transition-1.html)
 
 #### Flow definition
 ```js
@@ -157,32 +157,32 @@ render: (transitionProps: NavigationTransitionProps, prevTransitionProps: ?Navig
 ```
 
 #### Parameters
-- `transitionProps`: the current [NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273) created from the current state and props
-- `prevTransitionProps`: the previous [NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273) created from the previous state and props
+- `transitionProps`: 从当前导航状态和属性创建的[NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)
+- `prevTransitionProps`: 先前导航状态和属性创建的[NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)
 
 #### Returns
-- A ReactElement, which will be used to render the Transitioner component
+- ReactElement元素，会被用作渲染Transitioner组件
 
 ### `onTransitionStart` function
-Invoked when the transition animation is about to start.
+当动画准备开始时调用
 
-If you return a promise from `onTransitionStart`, the transition animation will begin after the promise is resolved.
+如果你从`onTransitionStart`返回一个promise，动画效果会在promise内容执行后再开始
 
 #### Flow definition
 ```js
 onTransitionStart: (transitionProps: NavigationTransitionProps, prevTransitionProps: ?NavigationTransitionProps) => (Promise | void),
 ```
 #### Parameters
-- `transitionProps`: the current [NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273) created from the current state and props
-- `prevTransitionProps`: the previous [NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273) created from the previous state and props
+- `transitionProps`: 从当前导航状态和属性创建的[NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)
+- `prevTransitionProps`: 先前导航状态和属性创建的[NavigationTransitionProps](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js#L273)
 
 #### Returns
-- `Promise` to delay the start of the transition animation, or none to begin the transition animation immediately.
+- `Promise` 延迟动画开始时间，或者设置none立即开始动画
 
 ### `onTransitionEnd` function
-Invoked once the transition animation completes.
+当动画完成后调用
 
-If you return a promise from `onTransitionEnd`, any queued transition animations will begin after the promise is resolved.
+如果你从`onTransitionEnd`返回一个promise，所有切换动画会在promise内容执行后生效。
 
 #### Flow definition
 ```js

@@ -1,11 +1,11 @@
 
 # Screen Navigation Options
 
-Each screen can configure several aspects about how it gets presented in parent navigators.
+每个页面都可以在父页面里配置几个关于如何展示的属性。
 
-#### Two Ways to specify each option
+#### 两种指定每个选项的方法
 
-**Static configuration:** Each navigation option can either be directly assigned:
+**静态配置：** 每个导航选项都可以直接配置：
 
 ```js
 class MyScreen extends React.Component {
@@ -15,14 +15,14 @@ class MyScreen extends React.Component {
   ...
 ```
 
-**Dynamic Configuration**
+**动态配置：**
 
-Or, the options can be a function that takes the following arguments, and returns an object of navigation options that will override the route-defined and navigator-defined navigationOptions.
+选项也可以通过接受如下几个参数的方法来返回一个导航选项对象，这样会覆盖之前在路由里定义或在导航器里定义的导航器选项。
 
-- `props` - The same props that are available to the screen component
-  - `navigation` - The [navigation prop](/docs/navigators/navigation-prop) for the screen, with the screen's route at `navigation.state`
-  - `screenProps` - The props passing from above the navigator component
-  - `navigationOptions` - The default or previous options that would be used if new values are not provided
+- `props` - 相同的属性对每个页面都可用：
+  - `navigation` - 页面的[navigation](/docs/navigators/navigation-prop) 属性，它还在`navigation.state`里持有页面的路由。
+  - `screenProps` - 该属性会从上面的导航器组件传递下来
+  - `navigationOptions` - 默认或者旧的选项会被沿用如果新值没被指定
 
 ```js
 class ProfileScreen extends React.Component {
@@ -33,7 +33,7 @@ class ProfileScreen extends React.Component {
   ...
 ```
 
-The screenProps are passed in at render-time. If this screen was hosted in a SimpleApp navigator:
+screenProps属性会在页面渲染时传递下来。如果页面是如下配置：
 
 ```js
 <SimpleApp
@@ -42,9 +42,9 @@ The screenProps are passed in at render-time. If this screen was hosted in a Sim
 />
 ```
 
-#### Generic Navigation Options
+#### 通用导航配置
 
-The `title` navigation option is generic between every navigator. It is used to set the title string for a given screen.
+每个导航页的`title`属性都是通用的，它会被用作设置为每个页面的标题。
 
 ```js
 class MyScreen extends React.Component {
@@ -54,14 +54,14 @@ class MyScreen extends React.Component {
   ...
 ```
 
-Unlike the other nav options which are only utilized by the navigator view, the title option can be used by the environment to update the title in the browser window or app switcher.
+不像其他导航选项只能被导航页面使用，title选项可以被应用来更新浏览器标题或者 app switcher。
 
-#### Default Navigation Options
+#### 默认的导航选项
 
-It's very common to define `navigationOptions` on a screen, but sometimes it is useful to define `navigationOptions` on a navigator too.
+在页面设置`navigationOptions`是很常用的，但有时我们也会在导航器上设置该属性。
 
-Imagine the following scenario:
-Your `TabNavigator` represents one of the screens in the app, and is nested within a top-level `StackNavigator`:
+想象如下场景：
+你的`TabNavigator`要展示其中一个页面，而它嵌套在顶层的`StackNavigator`里:
 
 ```
 StackNavigator({
@@ -70,7 +70,7 @@ StackNavigator({
 });
 ```
 
-Now, when `route2` is active, you would like to change the tint color of a header. It's easy to do it for `route1`, and it should also be easy to do it for `route2`. This is what Default Navigation Options are for - they are simply `navigationOptions` set on a navigator:
+现在`route2`为当前页，你想要改变它的头部栏颜色。这在`route1`里是很容易实现的，但它页应该在`route2`里很容易实现。这就是Default Navigation Options的作用：他们都是在导航器里简单可以设置的`navigationOptions`：
 
 ```js
 const MyTabNavigator = TabNavigator({
@@ -83,7 +83,7 @@ const MyTabNavigator = TabNavigator({
 });
 ```
 
-Note that you can still decide to **also** specify the `navigationOptions` on the screens at the leaf level - e.g.  the `ProfileScreen` above. The `navigationOptions` from the screen will be merged key-by-key with the default options coming from the navigator. Whenever both the navigator and screen define the same option (e.g. `headerTintColor`), the screen wins. Therefore, you could change the tint color when `ProfileScreen` is active by doing the following:
+注意你现在仍然可以在页面里设置`navigationOptions`。譬如上述的`ProfileScreen`里。从页面得到的`navigationOptions`会将导航器来的选项给改变合并。无论何时导航器和页面同时设置相同的属性，譬如`headerTintColor`，页面设置的会胜出。因此你可以通过如下步骤在`ProfileScreen`为当前页时改变颜色：
 
 ```js
 class ProfileScreen extends React.Component {
@@ -96,9 +96,9 @@ class ProfileScreen extends React.Component {
 
 ## Navigation Option Reference
 
-List of available navigation options depends on the `navigator` the screen is added to.
+在配置了导航器的页面可用的navigation选项
 
-Check available options for:
+查看下一下可用的选项：
 - [`drawer navigator`](/docs/navigators/drawer#Screen-Navigation-Options)
 - [`stack navigator`](/docs/navigators/stack#Screen-Navigation-Options)
 - [`tab navigator`](/docs/navigators/tab#Screen-Navigation-Options)

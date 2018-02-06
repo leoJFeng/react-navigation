@@ -1,7 +1,7 @@
 
 # withNavigation
 
-[`withNavigation`](/src/views/withNavigation.js) is a Higher Order Component which passes the `navigation` prop into a wrapped Component. It's useful when you cannot pass the `navigation` prop into the component directly, or don't want to pass it in case of a deeply nested child.
+[`withNavigation`](/src/views/withNavigation.js) 是一个高度定制的组件用来传递`navigation`属性到被包裹的组件中。当你不能直接传递`navigation`属性时，或者不想传递下去以防子组件深度嵌套时，它是很有用的
 
 ## Example
 

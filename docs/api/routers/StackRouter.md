@@ -1,8 +1,8 @@
 # StackRouter
 
-Manage the logical navigation stack, including pushing, popping, and handling path parsing to create a deep stack.
+管理导航栈的逻辑，包括推入，推出，处理路径传递用来创建一个深层栈。
 
-Let's take a look at a simple stack router:
+让我们看一个简单的栈路由：
 
 ```js
 const MyApp = StackRouter({
@@ -16,7 +16,7 @@ const MyApp = StackRouter({
 
 ### RouteConfig
 
-A basic stack router expects a route config object. Here is an example configuration:
+一个基本的路由栈需要一个路由配置对象。这里有一个配置例子：
 
 ```js
 const MyApp = StackRouter({ // This is the RouteConfig:
@@ -39,26 +39,26 @@ const MyApp = StackRouter({ // This is the RouteConfig:
 });
 ```
 
-Each item in the config may have the following:
+配置里的每个选项也许都有如下项：
 
-- `path` - Specify the path and params to be parsed for item in the stack
-- `screen` - Specify the screen component or child navigator
-- `getScreen` - Set a lazy getter for a screen component (but not navigators)
+- `path` - 指定路径和参数用作被堆栈解析
+- `screen` - 指定页面组件或者子导航器
+- `getScreen` - 懒加载一个页面组件（不是导航器）
 
 
 ### StackConfig
 
-Config options that are also passed to the stack router.
+配置选项同样也会传递到栈路由里。
 
-- `initialRouteName` - The routeName for the default route when the stack first loads
-- `initialRouteParams` - Default params of the initial route
-- `paths` - Provide a mapping of routeName to path config, which overrides the paths set in the routeConfigs.
+- `initialRouteName` -  堆栈第一次加载时的默认路由的名称
+- `initialRouteParams` - 初始路由的默认参数
+- `paths` - 提供routeName到路径配置的映射，会覆盖routeConfigs中设置的路径
 
 ### Supported Actions
 
-The stack router may respond to the following navigation actions. The router will generally delegate the action handling to a child router, if possible.
+路由栈可以响应以下导航操作。 如果可能的话，路由器通常会将动作处理委派给子路由器。
 
-- Navigate - Will push a new route on the stack if the routeName matches one of the router's routeConfigs
-- Back - Goes back (pops)
-- Reset - Clears the stack and provides new actions to create a fully new navigation state
-- SetParams - An action that a screen dispatches to change the params of the current route.
+- Navigate - 如果routeName匹配路由器的routeConfigs之一，将会在堆栈上推送一个新的路由
+- Back - 返回（弹出）
+- Reset - 清除堆栈并提供新actions用以创建全新的导航状态
+- SetParams - 页面派发的操作，用于更改当前路由的参数

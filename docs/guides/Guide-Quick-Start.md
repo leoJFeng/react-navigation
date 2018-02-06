@@ -1,28 +1,28 @@
-# Quick Start Guide
+# 快速指南
 
-To get started with React Navigation, all you have to do is install the `react-navigation` npm package.
+想要应用React Navigation，首先你要做的就是通过npm包安装react-navigation。
 
-### Install with NPM
+### 使用NPM安装
 
 ```
 npm install --save react-navigation
 ```
 
-### Install with Yarn
+### 使用Yarn安装
 
 ```
 yarn add react-navigation
 ```
 
-To start using React Navigation you'll have to create a navigator. React Navigation comes with three default navigators.
+要使用React Navigation 首先你要创建一个新的导航。React Navigation提供了三种默认导航：
 
-- `StackNavigator` - Provides a way for your app to transition between screens where each new screen is placed on top of a stack.
-- `TabNavigator` - Used to set up a screen with several tabs.
-- `DrawerNavigator` - Used to set up a screen with drawer navigation.
+- `StackNavigator` - 让你的app页面相互跳转，每一个新页面都会出现在栈的顶层
+- `TabNavigator` - 创建带有Tabs的导航页面
+- `DrawerNavigator` - 创建带有抽屉的导航页面
 
-## Creating a StackNavigator
+## 创建一个StackNavigator
 
-StackNavigator's are the most common form of navigator so we'll use it as a basic demonstration. To get started, create a `StackNavigator`.
+StackNavigator是最常用的一种导航器，下面我们将提供一个简单例子创建一个StackNavigator来介绍学习。
 
 ```javascript
 import { StackNavigator } from 'react-navigation';
@@ -34,7 +34,7 @@ const RootNavigator = StackNavigator({
 export default RootNavigator;
 ```
 
-We can then add screens to this `StackNavigator`. Each key represents a screen.
+我们可以为StackNavigator增加页面，每一个key值代表了一个页面。
 
 ```javascript
 import React from 'react';
@@ -65,7 +65,7 @@ const RootNavigator = StackNavigator({
 export default RootNavigator;
 ```
 
-Now let's add a title to the navigation bar.
+现在为导航条增加个标题吧
 
 ```javascript
 ...
@@ -88,9 +88,9 @@ const RootNavigator = StackNavigator({
 export default RootNavigator;
 ```
 
-Finally, we should be able to navigate from the home screen to the details screen. When you register a component with a navigator that component will then have a `navigation` prop added to it. This `navigation` prop drives how we move between different screens.
+最后我们要让home页面有能力跳转到detail页面。当你为一个组件注册一个导航时，组件将会拥有一个navigation属性，而这个navigation属性能让我们跳转到不同的页面。
 
-To move from the home screen to the details screen we'll want to use `navigation.navigate`, like so:
+为了能从home页面跳转到detail页面，我们将使用navigation.navigate方式，如下：
 
 ```javascript
 ...
@@ -109,13 +109,13 @@ const HomeScreen = ({ navigation }) => (
 ...
 ```
 
-And there you have it! That's the basics of using the [StackNavigator](/docs/navigators/stack), and React Navigation as a whole. Here's the full code from this example:
+成功了！这就是StackNavigator和React Navigation的基本使用方法。下面我们将提供以上例子的完整代码:
 
 <div class="snack" data-snack-id="HJlnU0XTb" data-snack-platform="ios" data-snack-preview="true" data-snack-theme="light" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.16);border-radius:4px;height:505px;width:100%"></div>
 
-## Creating a TabNavigator
+## 创建一个TabNavigator
 
-To get started with `TabNavigator` first import and create a new `RootTabs` component.
+要使用TabNavigator，首先引入和创建一个RootTabs组件。
 
 ```javascript
 import { TabNavigator } from 'react-navigation';
@@ -127,7 +127,7 @@ const RootTabs = TabNavigator({
 export default RootTabs;
 ```
 
-We then need to create some screens and add them to our `TabNavigator`.
+接着我们需要创建一些页面以及将它们添加到我们的TabNavigator里。
 
 ```javascript
 import React from 'react';
@@ -158,9 +158,9 @@ const RootTabs = TabNavigator({
 export default RootTabs;
 ```
 
-Getting there! Now let's explicity set a label and icon for the tab bar.
+好了！现在我们来为每个Tabbar子项添加一些标签和图标。
 
-> We'll be using [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons) in the example. If you don't have it installed in your project already please do so.
+> 我们将在下面示例使用 [`react-native-vector-icons`](https://github.com/oblador/react-native-vector-icons) 库，如果你没有为你项目安装此库请添加之。
 
 ```javascript
 ...
@@ -199,16 +199,15 @@ const RootTabs = TabNavigator({
 
 export default RootTabs;
 ```
+这里要确保`tabBarLabel`是一致的（在嵌套的导航器时尤其重要）而这将会设置一个`tabBarIcon`。这个图标在iOS设备上会以tab bar的默认方式展现，而在Android上会以标准设计方式展示。
 
-This will ensure the `tabBarLabel` is consistent (important when using nested navigators) and it will set a `tabBarIcon`. This icon will only be visible on iOS by default given the tab bar component used, which aligns with standard design patterns on Android.
-
-You can view the complete finished code below:
+下面你可以浏览完整的代码:
 
 <div class="snack" data-snack-id="BJZ2GVVpb" data-snack-platform="ios" data-snack-preview="true" data-snack-theme="light" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.16);border-radius:4px;height:505px;width:100%"></div>
 
-## Creating a DrawerNavigator
+## 创建一个Drawernavigator:
 
-To get started with `DrawerNavigator` first import and create a new `RootDrawer` component.
+要开始使用Drawernavigator首先要引入和创建一个新的RootDrawer组件。
 
 ```javascript
 import { DrawerNavigator } from 'react-navigation';
@@ -220,7 +219,7 @@ const RootDrawer = DrawerNavigator({
 export default RootDrawer;
 ```
 
-We then need to create some screens and add them to our `DrawerNavigator`.
+接着我们需要创建一些页面以及将它们添加到我们的`DrawerNavigator`里。
 
 ```javascript
 import React from 'react';
@@ -251,9 +250,9 @@ const RootDrawer = DrawerNavigator({
 export default RootDrawer;
 ```
 
-Getting there! Now let's explicity set a label and icon for the drawer items.
+好了！现在我们来为每个Drawer子项添加一些标签和图标。
 
-> We'll be using `react-native-vector-icons` in the example. If you don't have it installed in your project already please do so.
+> 我们将在下面示例使用`react-native-vector-icons`库，如果你没有为你项目安装此库请添加之。
 
 ```javascript
 ...
@@ -293,7 +292,7 @@ const RootDrawer = DrawerNavigator({
 export default RootDrawer;
 ```
 
-To open the drawer you can swipe from the left edge of the screen to the right. You've also got the option to open the drawer view `navigation.navigate('DrawerToggle')`, which we'll add to the Home component now. Make sure you import the `Button` component from `react-native`.
+要打开抽屉（drawer）你可以在页面从左往右滑动。你也可以通过我们即将加在home页面的`navigation.navigate('DrawerToggle')`方式来打开抽屉页面。请确保你已经正确从`react-native`引用`Button`。
 
 ```javascript
 ...
@@ -311,6 +310,6 @@ const HomeScreen = ({ navigation }) => (
 ...
 ```
 
-You can view the finished code below.
+下面你可以浏览完整的代码:
 
 <div class="snack" data-snack-id="rk90N44a-" data-snack-platform="ios" data-snack-preview="true" data-snack-theme="light" style="overflow:hidden;background:#fafafa;border:1px solid rgba(0,0,0,.16);border-radius:4px;height:505px;width:100%"></div>

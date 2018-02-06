@@ -1,6 +1,6 @@
 # DrawerNavigator
 
-Used to easily set up a screen with a drawer navigation. For a live example please see [our expo demo](https://exp.host/@react-navigation/NavigationPlayground).
+使用DrawerNavigator可以很轻易的建立一个带有抽屉导航的页面。完整例子请查看我们的[expo](https://exp.host/@react-navigation/NavigationPlayground)项目
 
 ```js
 class MyHomeScreen extends React.Component {
@@ -62,48 +62,48 @@ const MyApp = DrawerNavigator({
 });
 ```
 
-To open and close drawer, navigate to `'DrawerOpen'` and `'DrawerClose'` respectively.
+要打开和关闭抽屉，使用`DrawerOpen`和`DrawerClose`
 
 ```js
 this.props.navigation.navigate('DrawerOpen'); // open drawer
 this.props.navigation.navigate('DrawerClose'); // close drawer
 ```
-If you would like to toggle the drawer you can navigate to `'DrawerToggle'`, and this will choose which navigation is appropriate for you given the drawers current state.
+如果你想要切换你的抽屉，你可以使用`DrawerToggle`。这会根据你传给抽屉的状态选择切换的页面
 
 ```js
 // fires 'DrawerOpen'/'DrawerClose' accordingly
 this.props.navigation.navigate('DrawerToggle');
 ```
 
-## API Definition
+### API定义：
 
 ```js
 DrawerNavigator(RouteConfigs, DrawerNavigatorConfig)
 ```
 
-### RouteConfigs
+### 路由配置
 
-The route configs object is a mapping from route name to a route config, which tells the navigator what to present for that route, see [example](/docs/api/navigators/StackNavigator.md#routeconfigs) from `StackNavigator`.
+路由配置表是指路由命名到配置的映射，导航器从中知道要路由的页面。具体查看`StackNavigator`中的[例子](/docs/api/navigators/StackNavigator.md#routeconfigs)
 
 
 ### DrawerNavigatorConfig
-- `drawerWidth` - Width of the drawer or a function returning it.
-- `drawerPosition` - Options are `left` or `right`. Default is `left` position.
-- `contentComponent` - Component used to render the content of the drawer, for example, navigation items. Receives the `navigation` prop for the drawer. Defaults to `DrawerItems`. For more information, see below.
-- `contentOptions` - Configure the drawer content, see below.
-- `useNativeAnimations` - Enable native animations. Default is `true`.
-- `drawerBackgroundColor` - Use the Drawer background for some color. The Default is `white`.
+- `drawerWidth` - 抽屉的宽度或返回该宽度的函数
+- `drawerPosition` - 抽屉在左边还是右边。默认是`left`
+- `contentComponent` - 用于呈现抽屉内容的组件，例如导航的子项。从抽屉接收`navigation`属性。默认是    `DrawerItems`。更多参见下文
+- `contentOptions` - 配置抽屉内容，见下文
+- `useNativeAnimations` - 启用本地动画。 默认是true
+- `drawerBackgroundColor` - 抽屉背景色。 默认是白色的
 
-Several options get passed to the underlying router to modify navigation logic:
+几个可以传递给底层路由修改导航逻辑的选项:
 
-- `initialRouteName` - The routeName for the initial route.
-- `order` - Array of routeNames which defines the order of the drawer items.
-- `paths` - Provide a mapping of routeName to path config, which overrides the paths set in the routeConfigs.
-- `backBehavior` - Should the back button cause switch to the initial route? If yes, set to `initialRoute`, otherwise `none`. Defaults to `initialRoute` behavior.
+- `initialRouteName` - 第一次加载时的初始路由名称
+- `order` - 路由名称数组，用来定义标签页的顺序
+- `paths` - 提供路由名称到路径的映射，会覆盖routeConfigs中设置的路径
+- `backBehavior` - 后退按钮是否应该使标签页切换到上一个标签页？ 如果是，则设置为`initialRoute`，否则设为`none`。 默认为`initialRoute`。
 
-### Providing a custom `contentComponent`
+### 提供定制的contentComponent
 
-The default component for the drawer is scrollable and only contains links for the routes in the RouteConfig. You can easily override the default component to add a header, footer, or other content to the drawer. By default the drawer is scrollable and supports iPhone X safe area. If you customize the content, be sure to wrap the content in a SafeAreaView:
+默认的抽屉组件是可以滑动的以及只包含路由配置里的链接。你可以轻易复写默认的组件来增加一个头部，尾部和其他内容在抽屉里。默认的抽屉是可滑动及支持iPhoneX安全区域。如果你要定制该内容，确保内容是在安全区域里的。
 
 ```js
 import { DrawerItems, SafeAreaView } from 'react-navigation';
@@ -125,17 +125,17 @@ const styles = StyleSheet.create({
 
 ### `contentOptions` for `DrawerItems`
 
-- `items` - the array of routes, can be modified or overridden
-- `activeItemKey` - key identifying the active route
-- `activeTintColor` - label and icon color of the active label
-- `activeBackgroundColor` - background color of the active label
-- `inactiveTintColor` - label and icon color of the inactive label
-- `inactiveBackgroundColor` - background color of the inactive label
-- `onItemPress(route)` - function to be invoked when an item is pressed
-- `itemsContainerStyle` - style object for the content section
-- `itemStyle` - style object for the single item, which can contain an Icon and/or a Label
-- `labelStyle` - style object to overwrite `Text` style inside content section, when your label is a string
-- `iconContainerStyle` - style object to overwrite `View` icon container styles.
+- `items` - 路由的数组，可以被修改或覆盖
+- `activeItemKey` - 标识活动路由的键值
+- `activeTintColor` - 选中标签的标签和图标颜色
+- `activeBackgroundColor` - 选中标签的背景颜色
+- `inactiveTintColor` - 非选中标签的标签和图标颜色
+- `inactiveBackgroundColor` - 非选中标签的背景颜色
+- `onItemPress(route)` - 当一个组件被按下时被调用的函数
+- `itemsContainerStyle` - 内容区域的样式
+- `itemStyle` - 单个组件的，可以包含一个图标和/或一个标签
+- `labelStyle` - 复写内容部分中的文本样式，当您的标签是一个字符串
+- `iconContainerStyle` - 复写View图标内容样式
 
 #### Example:
 
@@ -155,25 +155,25 @@ contentOptions: {
 
 #### `title`
 
-Generic title that can be used as a fallback for `headerTitle` and `drawerLabel`
+可以用作`headerTitle`和`drawerLabel`的后备标题
 
 #### `drawerLabel`
 
-String, React Element or a function that given `{ focused: boolean, tintColor: string }` returns a React.Node, to display in drawer sidebar. When undefined, scene `title` is used
+字符串，React元素或给定`{ focused: boolean, tintColor: string }`的函数用来返回一个React元素，以显示在抽屉边栏中。 未定义时，使用场景标题
 
 #### `drawerIcon`
 
-React Element or a function, that given `{ focused: boolean, tintColor: string }` returns a React.Node, to display in drawer sidebar
+React元素或给定`{ focused: boolean, tintColor: string }`的函数返回一个React.Node，以显示在抽屉边栏
 
 #### `drawerLockMode`
 
-Specifies the [lock mode](https://facebook.github.io/react-native/docs/drawerlayoutandroid.html#drawerlockmode) of the drawer. This can also update dynamically by using screenProps.drawerLockMode on your top level router.
+指定抽屉的[锁定模式](https://facebook.github.io/react-native/docs/drawerlayoutandroid.html#drawerlockmode)。这也可以通过在顶层路由器上使用`screenProps.drawerLockMode`动态更新
 
 ### Navigator Props
 
-The navigator component created by `DrawerNavigator(...)` takes the following props:
+通过`DrawerNavigator(...)`创建的导航器有如下属性：
 
-- `screenProps` - Pass down extra options to child screens, for example:
+- `screenProps` - 传递子页面需要的额外选项，譬如:
 
 
  ```jsx
@@ -188,4 +188,4 @@ The navigator component created by `DrawerNavigator(...)` takes the following pr
 
  ### Nesting `DrawerNavigation`
 
-Please bear in mind that if you nest the DrawerNavigation, the drawer will show below the parent navigation.
+要记住如果你要嵌套DrawerNavigation，抽屉会显示在父导航器之下

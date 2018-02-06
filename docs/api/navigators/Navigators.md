@@ -1,28 +1,29 @@
-# Navigators
+# 导航器
 
-Navigators allow you to define your application's navigation structure. Navigators also render common elements such as headers and tab bars which you can configure.
+导航器允许你定义自己的导航结构。导航器同时也可以让你配置通用元素譬如头部栏或者tabbar等。
 
-Under the hood, navigators are plain React components.
+在底层导航器也被解析为React组件。
 
-## Built-in Navigators
+## 导航器创建
 
-`react-navigation` includes the following functions to help you create navigators:
+`react-navigation`包含如下几个方法来帮助你创建导航器：
 
-- [StackNavigator](/docs/navigators/stack) - Renders one screen at a time and provides transitions between screens. When a new screen is opened it is placed on top of the stack.
-- [TabNavigator](/docs/navigators/tab) - Renders a tab bar that lets the user switch between several screens
-- [DrawerNavigator](/docs/navigators/drawer) - Provides a drawer that slides in from the left of the screen
+- [StackNavigator](/docs/navigators/stack) - 渲染一个页面同时提供页面间的跳转。当一个新页面打开时会被放置到栈顶
+- [TabNavigator](/docs/navigators/tab) - 渲染一个标签栏页面让用户可以在几个页面间切换
+- [DrawerNavigator](/docs/navigators/drawer) - 渲染一个抽屉页面，可以从屏幕左边滑出
 
-## Rendering screens with Navigators
+## 渲染一个带有导航器的页面
 
-The navigators render application screens which are just React components.
+导航器渲染的screens仅仅是React组件
 
-To learn how to create screens, read about:
-- [Screen `navigation` prop](/docs/navigators/navigation-prop) to allow the screen to dispatch navigation actions, such as opening another screen
-- [Screen `navigationOptions`](/docs/navigators/navigation-options) to customize how the screen gets presented by the navigator (e.g. header title, tab label)
+要学习怎么创建screen，阅读相关：
+- [Screen `navigation`](/docs/navigators/navigation-prop) 属性允许页面发起导航行为，譬如打开新页面
+- [Screen `navigationOptions`](/docs/navigators/navigation-options) 定制导航的页面展示方式（标题，标签等）
 
-### Calling Navigate on Top Level Component
+### 顶部组件使用导航
 
-In case you want to use Navigator from the same level you declare it you can use react's [`ref`](https://facebook.github.io/react/docs/refs-and-the-dom.html#the-ref-callback-attribute) option:  
+如果你想在相同层级使用导航器，你可以使用react的[`ref`](https://facebook.github.io/react/docs/refs-and-the-dom.html#the-ref-callback-attribute)项：
+
 ```js
 import { NavigationActions } from 'react-navigation';
 
@@ -42,22 +43,22 @@ class App extends React.Component {
   }
 }
 ```
-Please notice that this solution should only be used on the top level navigator.  
+要注意这种解决方法仅仅在导航器顶层可以使用。
 
-## Navigation Containers
+## 导航容器
 
-The built in navigators can automatically behave like top-level navigators when the navigation prop is missing. This functionality provides a transparent navigation container, which is where the top-level navigation prop comes from.
+内部的导航器即使navigation属性丢失也可以像顶层导航器一样工作。此原理是因为提供了一个隐形的导航容器，而这也是顶层的navigation属性的来源。
 
-When rendering one of the included navigators, the navigation prop is optional. When it is missing, the container steps in and manages its own navigation state. It also handles URLs, external linking, and Android back button integration.
+当渲染上述其中一个导航器时，navigation属性是可选的。当该属性丢失时，容器会自行管理自己的navigation状态。它也同时可以管理URLs，外部链接，安卓返回键处理等。
 
-For the purpose of convenience, the built-in navigators have this ability because behind the scenes they use `createNavigationContainer`. Usually, navigators require a navigation prop in order to function.
+为了方便内部的导航器能拥有这项能力他们会在`scenes`使用`createNavigationContainer`创建。通常导航器需要一个`navigation`属性来实现该方法。
 
-Top-level navigators accept the following props:  
+顶层的导航器会接受如下属性：
 
 ### `onNavigationStateChange(prevState, newState, action)`
 
-Function that gets called every time navigation state managed by the navigator changes. It receives the previous state, the new state of the navigation and the action that issued state change. By default it prints state changes to the console.
+该方法会在每次导航状态改变时调用。它接受一个旧状态，一个导航器新状态以及使得状态改变的行为（actions）。默认它会在控制台打印状态的改变。
 
 ### `uriPrefix`
 
-The prefix of the URIs that the app might handle. This will be used when handling a [deep link](/docs/guides/linking) to extract the path passed to the router.
+App处理的URLs前缀。这会在处理[深层链接](/docs/guides/linking) 时传递路径给路由。

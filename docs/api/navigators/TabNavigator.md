@@ -1,6 +1,6 @@
 # TabNavigator
 
-Used to easily set up a screen with several tabs with a TabRouter. For a live example please see [our expo demo](https://exp.host/@react-navigation/NavigationPlayground).
+使用TabNavigator可以轻易建立拥有几个标签栏和标签路由的页面。通过[expo](https://exp.host/@react-navigation/NavigationPlayground)项目查看这些例子。
 
 ```js
 class MyHomeScreen extends React.Component {
@@ -10,7 +10,7 @@ class MyHomeScreen extends React.Component {
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('./chats-icon.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
+        style={[styles.icon, { tintColor }]}
       />
     ),
   };
@@ -31,7 +31,7 @@ class MyNotificationsScreen extends React.Component {
     tabBarIcon: ({ tintColor }) => (
       <Image
         source={require('./notif-icon.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
+        style={[styles.icon, { tintColor }]}
       />
     ),
   };
@@ -69,48 +69,47 @@ const MyApp = TabNavigator({
 });
 ```
 
-## API Definition
+## API定义
 
 ```js
 TabNavigator(RouteConfigs, TabNavigatorConfig)
 ```
 
-### RouteConfigs
+### 路由配置
 
-The route configs object is a mapping from route name to a route config, which tells the navigator what to present for that route, see [example](/docs/api/navigators/StackNavigator.md#routeconfigs) from `StackNavigator`.
+路由配置表是指路由命名到配置的映射，导航器从中知道要路由的页面。具体查看StackNavigator中的[例子](/docs/api/navigators/StackNavigator.md#routeconfigs)。
 
 ### TabNavigatorConfig
 
-- `tabBarComponent` - Component to use as the tab bar, e.g. `TabBarBottom`
-(this is the default on iOS), `TabBarTop`
-(this is the default on Android).
-- `tabBarPosition` - Position of the tab bar, can be `'top'` or `'bottom'`.
-- `swipeEnabled` - Whether to allow swiping between tabs.
-- `animationEnabled` - Whether to animate when changing tabs.
-- `configureTransition` - a function that, given `currentTransitionProps` and `nextTransitionProps`, returns a configuration object that describes the animation between tabs.
-- `initialLayout` - Optional object containing the initial `height` and `width`, can be passed to prevent the one frame delay in [react-native-tab-view](https://github.com/react-native-community/react-native-tab-view#avoid-one-frame-delay) rendering.
-- `tabBarOptions` - Configure the tab bar, see below.
+- `tabBarComponent` - 用作标签栏的组件，例如 `TabBarBottom`（这是iOS上的默认设置），`TabBarTop`（这是Android上的默认设置）
+- `tabBarPosition` - 标签栏的位置，可以是`top`或`bottom`
+- `swipeEnabled` - 是否允许在标签页面之间滑动
+- `animationEnabled` - 标签页切换时是否展示动画
+- `configureTransition` - 一个给定`currentTransitionProps`和`nextTransitionProps`的方法，返回一个配置对象，描述标签页之间的动画
+- `initialLayout` - 可以传递包含初始`height`和`width`的可选对象，以防止[react-native-tab-view](https://github.com/react-native-community/react-native-tab-view#avoid-one-frame-delay) 掉帧。
+- `tabBarOptions` - 配置标签栏，见下文
 
-Several options get passed to the underlying router to modify navigation logic:
+几个传递给路由底层修改导航逻辑的选项：
 
-- `initialRouteName` - The routeName for the initial tab route when first loading.
-- `order` - Array of routeNames which defines the order of the tabs.
-- `paths` - Provide a mapping of routeName to path config, which overrides the paths set in the routeConfigs.
-- `backBehavior` - Should the back button cause a tab switch to the initial tab? If yes, set to `initialRoute`, otherwise `none`. Defaults to `initialRoute` behavior.
+- `initialRouteName` - 第一次加载时的初始路由名称
+- `order` - 路由名称数组，用来定义标签页的顺序
+- `paths` - 提供路由名称到路径的映射，会覆盖routeConfigs中设置的路径
+- `backBehavior` - 后退按钮是否应该使标签页切换到上一个标签页？ 如果是，则设置为`initialRoute`，否则设为`none`。 默认为`initialRoute`。
 
-### `tabBarOptions` for `TabBarBottom` (default tab bar on iOS)
 
-- `activeTintColor` - Label and icon color of the active tab.
-- `activeBackgroundColor` - Background color of the active tab.
-- `inactiveTintColor` - Label and icon color of the inactive tab.
-- `inactiveBackgroundColor` - Background color of the inactive tab.
-- `showLabel` - Whether to show label for tab, default is true.
-- `style` - Style object for the tab bar.
-- `labelStyle` - Style object for the tab label.
-- `tabStyle` - Style object for the tab.
-- `allowFontScaling` - Whether label font should scale to respect Text Size accessibility settings, default is true.
+### `tabBarOptions` for `TabBarBottom` (iOS默认的tabbar)
 
-Example:
+- `activeTintColor` - 选中标签页的标签和图标颜色
+- `activeBackgroundColor` - 选中标签页的背景颜色
+- `inactiveTintColor` - 未选中的标签页的标签和图标颜色
+- `inactiveBackgroundColor` - 未选中的标签页的背景颜色
+- `showLabel` - 是否显示标签，默认为true
+- `style` - 标签栏的样式
+- `labelStyle` - 标签的样式
+- `tabStyle` - 标签栏的样式
+- `allowFontScaling` - 标签字体是否允许缩放以响应辅助功能里的文字设置，默认为true
+
+例子:
 
 ```js
 tabBarOptions: {
@@ -124,24 +123,24 @@ tabBarOptions: {
 }
 ```
 
-### `tabBarOptions` for `TabBarTop` (default tab bar on Android)
+### `tabBarOptions` for `TabBarTop` (Android默认的tabbar)
 
-- `activeTintColor` - Label and icon color of the active tab.
-- `inactiveTintColor` - Label and icon color of the inactive tab.
-- `showIcon` - Whether to show icon for tab, default is false.
-- `showLabel` - Whether to show label for tab, default is true.
-- `upperCaseLabel` - Whether to make label uppercase, default is true.
-- `pressColor` - Color for material ripple (Android >= 5.0 only).
-- `pressOpacity` - Opacity for pressed tab (iOS and Android < 5.0 only).
-- `scrollEnabled` - Whether to enable scrollable tabs.
-- `tabStyle` - Style object for the tab.
-- `indicatorStyle` - Style object for the tab indicator (line at the bottom of the tab).
-- `labelStyle` - Style object for the tab label.
-- `iconStyle` - Style object for the tab icon.
-- `style` - Style object for the tab bar.
-- `allowFontScaling` - Whether label font should scale to respect Text Size accessibility settings, default is true.
+- `activeTintColor` - 选中标签页的标签和图标颜色
+- `inactiveTintColor` - 未选中的标签页的标签和图标颜色
+- `showIcon` - 是否显示标签图标，默认为false
+- `showLabel` - 是否显示标签，默认为true
+- `upperCaseLabel` - 是否使标签字母大写，默认为true
+- `pressColor` - 材质颜色（仅适用于Android版本> = 5.0）.
+- `pressOpacity` - 按下标签时的透明度（iOS和Android <5.0）.
+- `scrollEnabled` - 是否启用可滚动标签页.
+- `tabStyle` -  标签页的样式
+- `indicatorStyle` - 指示器的样式（标签底部线）
+- `labelStyle` - 标签的样式
+- `iconStyle` - 图标的样式
+- `style` - 标签栏的样式
+- `allowFontScaling` - 标签字体是否允许缩放以响应辅助功能里的文字设置，默认为true
 
-Example:
+例子:
 
 ```js
 tabBarOptions: {
@@ -161,39 +160,39 @@ tabBarOptions: {
 
 #### `title`
 
-Generic title that can be used as a fallback for `headerTitle` and `tabBarLabel`.
+可以用作`headerTitle`和`tabBarLabel`的后备的通用标题
 
 #### `tabBarVisible`
 
-True or false to show or hide the tab bar, if not set then defaults to true.
+显示或隐藏标签栏，默认为true
 
 #### `swipeEnabled`
 
-True or false to enable or disable swiping between tabs, if not set then defaults to TabNavigatorConfig option swipeEnabled.
+启用或禁用在选项卡之间滑动。默认为swipeEnabled
 
 #### `tabBarIcon`
 
-React Element or a function that given `{ focused: boolean, tintColor: string }` returns a React.Node, to display in tab bar.
+React元素或给定方法`{ focused: boolean, tintColor: string }`来返回一个React节点展示在标签栏上
 
 #### `tabBarLabel`
 
-Title string of a tab displayed in the tab bar or React Element or a function that given `{ focused: boolean, tintColor: string }` returns a React.Node, to display in tab bar. When undefined, scene `title` is used. To hide, see `tabBarOptions.showLabel` in the previous section.
+字符串或者React元素或者给定方法`{ focused: boolean, tintColor: string }`来返回一个React节点展示在标签栏上。当该值为undefined时，scene的`title`值会被使用。要隐藏，请参阅上一节中的`tabBarOptions.showLabel`
 
 #### `tabBarOnPress`
 
-Callback to handle tap events; the argument is an object containing:
+回调处理点击事件。其中包含：
 
-* the `previousScene: { route, index }` which is the scene we are leaving
-* the `scene: { route, index }` that was tapped
-* the `jumpToIndex` method that can perform the navigation for you
+* the `previousScene: { route, index }` 这是我们要离开的页面
+* the `scene: { route, index }` 点击页面
+* the `jumpToIndex` 可以为您执行导航的方法
 
-Useful for adding a custom logic before the transition to the next scene (the tapped one) starts.
+在转换到下一个场景之前添加一个自定义逻辑（被点击的）是很有用的
 
 ### Navigator Props
 
-The navigator component created by `TabNavigator(...)` takes the following props:
+由`TabNavigator(...)`创建的导航组件有如下属性
 
-- `screenProps` - Pass down extra options to child screens and navigation options, for example:
+- `screenProps` - 为子页面传递额外的内容，如下：
 
 
  ```jsx

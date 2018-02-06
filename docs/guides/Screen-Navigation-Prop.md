@@ -1,28 +1,28 @@
 
 # Screen Navigation Prop
 
-Each *screen* in your app will receive a navigation prop which contain the following:
-* `navigate` - (helper) link to other screens
-* `state` - screen's current state/routes
-* `setParams` - (helper) make changes to route's params
-* `goBack` - (helper) close active screen and move back
-* `dispatch` - send an action to router
+你应用里的每个页面都会收到一个`navigation`属性，它包含了以下几项:
+* `navigate` - (helper) 链接其他页面
+* `state` - 页面当前的状态/路由
+* `setParams` - (helper) 更改路由参数
+* `goBack` - (helper) 关闭当前页面并返回
+* `dispatch` - 发送一个事件到路由
 
-*NOTE:* The `navigation` prop is passed down to every navigation-aware component including navigators. The big exception is that a navigator's `navigation` prop may not have the helper functions (`navigate`, `goBack`, etc); it may only have `state` and `dispatch`. In order to `navigate` using the navigator's `navigation` prop, you will have to `dispatch` using an [action creator](navigation-actions).
+注意：`navigation`属性会传递到每个导航可感知组件。问题是导航的`navigation`属性可能没有帮助方法(`navigate`, `goBack`, etc),它可能只含有`state`和`dispatch`。为了使导航器的`navigation`属性能应用`navigate`方法，你应该用[action creator](navigation-actions) 来使用dispatch。
 
-*Notes regarding hooking things up with Redux*
+*和Redux绑定的注意事项*
 
-> People don't always hook things up to redux correctly, because they mis-understand the navigator's top-level API, where the navigation prop is optional. The navigator will maintain its own state if it doesn't get a navigation prop, but this is not a feature you generally want to use when hooking your app up with redux. For navigators that are nested inside of your main navigator, you always want to pass the screen's navigation prop down. This allows your top-level navigator to communicate and provide state for all the children navigators. Only your top-level router needs to be integrated with redux, because all the other routers are inside it.
+> 许多人都不会正确的绑定Redux，因为他们错误的理解了navigator的顶层API里navigation属性是可选的。导航器会自己维护自己的状态如果它没收到一个navigation属性，但如果你想要绑定Redux就不应该这样做。在你的主导航器嵌套下的导航器，你应该为每个页面传递navigation属性。 这会让你的顶层navigator能够通过提供状态与每个子导航器沟通。只需要你的顶层导航器绑定了redux，因为这样所有其他的导航器都在其中了
 
-## `navigate` - Link to other screens
+## `navigate` - 链接到其他页面
 
-Call this to link to another screen in your app. Takes the following arguments:
+在你的app里使用它能够跳转到别的页面。使用如下命令：
 
 `navigate(routeName, params, action)`
 
-- `routeName` - A destination routeName that has been registered somewhere in the app's router
-- `params` - Params to merge into the destination route
-- `action` - (advanced) The sub-action to run in the child router, if the screen is a navigator. See [Actions Doc](navigation-actions) for a full list of supported actions.
+- `routeName` - 注册在你app里某处的要跳转的路由名称
+- `params` - 要带给目的路由的参数
+- `action` - (advanced) 跑在你的子路由的可选事项，如果页面也是个导航器。查看[Actions Doc](navigation-actions)获取完整帮助
 
 ```js
 class HomeScreen extends React.Component {
@@ -42,9 +42,9 @@ class HomeScreen extends React.Component {
 }
 ```
 
-## `state` - The screen's current state/route
+## `state` - 页面当前的状态/路由
 
-A screen has access to its route via `this.props.navigation.state`. Each will return an object with the following:
+通过`this.props.navigation.state`页面可以查看到它的路由。每一个都会返回如下对象
 
 ```js
 {
@@ -70,9 +70,9 @@ class ProfileScreen extends React.Component {
 ```
 
 
-## `setParams` - Make changes to route params
+## `setParams` - 更改路由参数
 
-Firing the `setParams` action allows a screen to change the params in the route, which is useful for updating the header buttons and title.
+使用`setParams`允许页面更改路由参数，可以用来更改头部按钮和标题
 
 ```js
 class ProfileScreen extends React.Component {
@@ -88,13 +88,13 @@ class ProfileScreen extends React.Component {
 }
 ```
 
-## `goBack` - Close the active screen and move back
+## `goBack` - 关闭当前页面并返回
 
-Optionally provide a key, which specifies the route to go back from. By default, goBack will close the route that it is called from.
+提供在路由里设定的key值返回到该页面。默认goBack会关闭使用它的路由页面
 
-*Going back from a specific screen*
+*返回到一个指定页面*
 
-Consider the following navigation state:
+思考下如下的导航栈：
 ```
 {
   routes: [
@@ -106,14 +106,13 @@ Consider the following navigation state:
 }
 ```
 
-Now you are on *screen C* and want to go back to the *HomeScreen (A)* (popping C and B).
-Then you need to supply a key to goBack *FROM*:
+现在如果你在C页面而想要返回到A页面（退出C，和B页面）你需要指定从哪个页面返回:
 
 ```
 navigation.goBack("B") // will go to screen A FROM screen B
 ```
 
-If the goal is to go back from the currently active route, call `.goBack(null);`
+如果目标是返回到任意页面，而不用指定关闭页面，使用`.goBack(null);`
 
 ```js
 class HomeScreen extends React.Component {
@@ -139,13 +138,13 @@ class HomeScreen extends React.Component {
 }
 ```
 
-## `dispatch` - Send an action to the router
+## `dispatch` - 发送给路由一个事件
 
-Use dispatch to send any navigation action to the router. The other navigation functions use dispatch behind the scenes.
+使用dispatch发送任意navigation事件给路由。其他navigation方法会在页面下使用dispatch。
 
-Note that if you want to dispatch react-navigation actions you should use the action creators provided in this library.
+注意如果你想发送react-navigation事件你应该使用库里提供的action creators。
 
-See [Navigation Actions Docs](navigation-actions) for a full list of available actions.
+查看[Navigation Actions Docs](navigation-actions) 获取完整的可用项。
 
 ```js
 import { NavigationActions } from 'react-navigation'

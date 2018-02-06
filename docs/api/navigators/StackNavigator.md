@@ -1,8 +1,8 @@
 # StackNavigator
 
-Provides a way for your app to transition between screens where each new screen is placed on top of a stack.
+为你的app提供页面跳转。新页面会被放置在页面栈的顶部。
 
-By default the StackNavigator is configured to have the familiar iOS and Android look & feel: new screens slide in from the right on iOS, fade in from the bottom on Android. On iOS the StackNavigator can also be configured to a modal style where screens slide in from the bottom.
+默认的StackNavigator会配置为熟悉的iOS和Android风格。iOS的新页面会从右边滑进，而安卓则从底部闪出。而iOS也可以配置为modal的样式，即页面从底部滑出。
 
 ```jsx
 
@@ -32,15 +32,15 @@ const ModalStack = StackNavigator({
 });
 ```
 
-## API Definition
+## API定义
 
 ```js
 StackNavigator(RouteConfigs, StackNavigatorConfig)
 ```
 
-### RouteConfigs
+### 路由配置
 
-The route configs object is a mapping from route name to a route config, which tells the navigator what to present for that route.
+路由配置表是指路由命名到配置的映射，导航器从中知道要路由的页面。
 
 ```js
 StackNavigator({
@@ -68,105 +68,107 @@ StackNavigator({
 
 ### StackNavigatorConfig
 
-Options for the router:
+路由选项：
 
-- `initialRouteName` - Sets the default screen of the stack. Must match one of the keys in route configs.
-- `initialRouteParams` - The params for the initial route
-- `navigationOptions` - Default navigation options to use for screens
-- `paths` - A mapping of overrides for the paths set in the route configs
+- `initialRouteName` - 为栈设置默认的页面。一定要是路由配置表里的其中一个
+- `initialRouteParams` - 默认的路由参数
+- `navigationOptions` - 默认的导航选项
+- `paths` - 设置在路由配置里的路径映射
 
-Visual options:
+视觉选项：
 
-- `mode` - Defines the style for rendering and transitions:
-  - `card` - Use the standard iOS and Android screen transitions. This is the default.
-  - `modal` - Make the screens slide in from the bottom which is a common iOS pattern. Only works on iOS, has no effect on Android.
-- `headerMode` - Specifies how the header should be rendered:
-  - `float` - Render a single header that stays at the top and animates as screens are changed. This is a common pattern on iOS.
-  - `screen` - Each screen has a header attached to it and the header fades in and out together with the screen. This is a common pattern on Android.
-  - `none` - No header will be rendered.
-- `cardStyle` - Use this prop to override or extend the default style for an individual card in stack.
-- `transitionConfig` - Function to return an object that is merged with the default screen transitions (take a look at TransitionConfig in [type definitions](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js)). Provided function will be passed the following arguments:
-	- `transitionProps` - Transition props for the new screen.
-	- `prevTransitionProps` - Transitions props for the old screen.
-	- `isModal` - Boolean specifying if screen is modal.
-- `onTransitionStart` - Function to be invoked when the card transition animation is about to start.
-- `onTransitionEnd` - Function to be invoked once the card transition animation completes.
+- `mode` - 设置页面的过度动画和展示方式：
+  - `card` - iOS和Android的标准展示方式。此为默认配置
+  - `modal` - 让页面像iOS modal模式从底部滑出。该项只在iOS生效，Android无效
+
+- `headerMode` - 定义顶部栏应该如何展示：
+  - `float` - 渲染一个保持在顶部不跟随页面滑动的顶部栏。这是iOS的常用模式
+  - `screen` - 每个页面附着一个顶部栏，跟随页面出现和小时。这是Android的常用模式
+  - `none` - 不渲染任何顶部栏
+- `cardStyle` - 用此属性重写默认的栈页面样式
+- `transitionConfig` - 该方法会返回一个默认页面动画效果的对象（请参考[type definitions](https://github.com/react-community/react-navigation/blob/master/src/TypeDefinition.js)里的TransitionConfig）该方法需要传递下面参数：
+	- `transitionProps` - 新页面的过渡动画属性
+	- `prevTransitionProps` - 旧页面的过渡动画属性
+	- `isModal` - 指定页面是否modal
+- `onTransitionStart` - 页面动画开始时调用该方法
+- `onTransitionEnd` - 页面动画结束时调用该方法
 
 
 ### Screen Navigation Options
 
 #### `title`
 
-String that can be used as a fallback for `headerTitle`. Additionally, will be used as a fallback for `tabBarLabel` (if nested in a TabNavigator) or `drawerLabel` (if nested in a DrawerNavigator). 
+可用作headerTitle的后备标题。此外也可以用作`tabBarLabel`（如果嵌套在`TabNavigator`）或者`drawerLabel`（如果嵌套在`DrawerNavigator`）的后备。
 
 #### `header`
 
-React Element or a function that given `HeaderProps` returns a React Element, to display as a header. Setting to `null` hides header.
+React元素或者一个返回React元素的需要传入`HeaderProps`属性的方法，用作展示标题栏。设置`null`时隐藏标题栏。
+
 
 #### `headerTitle`
 
-String, React Element or React Component used by the header. Defaults to scene `title`. When a component is used, it receives `allowFontScaling`, `style` and `children` props. The title string is passed in `children`.
+用作顶部栏的字符串，React元素或者React 组件。scene里默认是`title`。当组件被使用时，它会收到`allowFontScaling`，`style`，和`children`属性。title字符串会传递给`children`。
 
 #### `headerTitleAllowFontScaling`
 
-Whether header title font should scale to respect Text Size accessibility settings. Defaults to true.
+顶部栏标题字体是否允许缩放。默认为true
 
 #### `headerBackTitle`
 
-Title string used by the back button on iOS, or `null` to disable label. Defaults to the previous scene's `headerTitle`.
+iOS上返回键文字或者设置`null`不显示。默认是上个页面的标题`headerTitle`。
 
 #### `headerTruncatedBackTitle`
 
-Title string used by the back button when `headerBackTitle` doesn't fit on the screen. `"Back"` by default.
+当`headerBackTitle`不管用时返回按钮的文字。默认是`"Back"`
 
 #### `headerRight`
 
-React Element to display on the right side of the header.
+顶部栏的右边React元素。
 
 #### `headerLeft`
 
-React Element or Component to display on the left side of the header. When a component is used, it receives a number of props when rendered (`onPress`, `title`, `titleStyle` and more - check `Header.js` for the complete list).
+顶部栏的左边React元素。当该组件应用时，会收到一些属性诸如：`onPress`,`title`,`titleStyle`等等。具体查看`Header.js`获取完整列表。
 
 #### `headerStyle`
 
-Style object for the header
+顶部栏样式
 
 #### `headerTitleStyle`
 
-Style object for the title component
+顶部栏标题样式
 
 #### `headerBackTitleStyle`
 
-Style object for the back title
+返回键标题样式
 
 #### `headerTintColor`
 
-Tint color for the header
+顶部栏色调
 
 #### `headerPressColorAndroid`
 
-Color for material ripple (Android >= 5.0 only)
+Android顶部栏点击颜色
 
 #### `gesturesEnabled`
 
-Whether you can use gestures to dismiss this screen. Defaults to true on iOS, false on Android.
+使用手势返回页面。默认iOS为true Android为false
 
 #### `gestureResponseDistance`
 
-Object to override the distance of touch start from the edge of the screen to recognize gestures. It takes the following properties:
+复写从屏幕边缘滑动的距离以识别手势。它需要以下几个属性:
 
-- `horizontal` - *number* - Distance for horizontal direction. Defaults to 25.
-- `vertical` - *number* - Distance for vertical direction. Defaults to 135.
+- `horizontal` - *number* - 水平滑动数值，默认是25
+- `vertical` - *number* - 竖直方向滑动距离，默认为135
 
 #### `gestureDirection`
 
-String to override the direction for dismiss gesture. `default` for normal behaviour or `inverted` for right-to-left swipes.
+手势滑动返回页面方向。Default为正常手势inverted为右往左方向
 
 ### Navigator Props
 
-The navigator component created by `StackNavigator(...)` takes the following props:
+由StackNavigator创建的导航条有如下属性：
 
-- `screenProps` - Pass down extra options to child screens, for example:
+- `screenProps` - 传递额外的项给子页面。譬如:
 
 
  ```jsx
@@ -179,11 +181,11 @@ The navigator component created by `StackNavigator(...)` takes the following pro
  />
  ```
 
-### Examples
+### 例子
 
-See the examples [SimpleStack.js](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/SimpleStack.js) and [ModalStack.js](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/ModalStack.js) which you can run locally as part of the [NavigationPlayground](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground) app.
+查看 [SimpleStack.js](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/SimpleStack.js) 和 [ModalStack.js](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/ModalStack.js) 这些你可以在本地作为[NavigationPlayground](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground)应用跑起来的例子。
 
-You can view these examples directly on your phone by visiting [our expo demo](https://exp.host/@react-navigation/NavigationPlayground).
+你可以通过我们的[expo](https://exp.host/@react-navigation/NavigationPlayground)项目直接在你手机上查看这些例子。
 
 #### Modal StackNavigator with Custom Screen Transitions
 
@@ -227,4 +229,4 @@ const ModalNavigator = StackNavigator(
 );
  ```
 
-Header transitions can also be configured using `headerLeftInterpolator`, `headerTitleInterpolator` and `headerRightInterpolator` fields under `transitionConfig`.
+Header 切换效果也可以在`transitionConfig`里的`headerLeftInterpolator`和`headerTitleInterpolator`以及`headerRightInterpolator`配置。

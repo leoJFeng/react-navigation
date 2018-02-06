@@ -1,8 +1,8 @@
 # TabRouter
 
-Manage a set of tabs in the application, handle jumping to tabs, and handle the back button press to jump to the initial tab.
+管理应用的一组tabs，处理tabs间跳转，处理返回按钮跳转到上个tab事件。
 
-Let's take a look at a simple tabs router:
+让我们看一下简单的tabs路由
 
 ```js
 const MyApp = TabRouter({
@@ -16,7 +16,7 @@ const MyApp = TabRouter({
 
 ### RouteConfig
 
-A tabs router has a routeConfig for each possible tab:
+Tabs路由里的每个tab都有一个路由配置：
 
 ```js
 const MyApp = TabRouter({ // This is the RouteConfig:
@@ -35,26 +35,26 @@ const MyApp = TabRouter({ // This is the RouteConfig:
 });
 ```
 
-Each item in the config may have the following:
+每个选项都有如下项：
 
-- `path` - Specify the path for each tab
-- `screen` - Specify the screen component or child navigator
-- `getScreen` - Set a lazy getter for a screen component (but not navigators)
+- `path` - 指定每个tab的路径
+- `screen` - 指定页面组件或子导航器
+- `getScreen` - 懒加载一个页面组件（不能是导航器）
 
 
 ### Tab Router Config
 
-Config options that are also passed to the router.
+配置选项也会传递到路由里：
 
-- `initialRouteName` - The routeName for the initial tab route when first loading
-- `order` - Array of routeNames which defines the order of the tabs
-- `paths` - Provide a mapping of routeName to path config, which overrides the paths set in the routeConfigs.
-- `backBehavior` - Should the back button cause a tab switch to the initial tab? If yes, set to `initialRoute`, otherwise `none`. Defaults to `initialRoute` behavior.
+- `initialRouteName` - 第一次加载时初始tab的路由名称
+- `order` - 定义tabs顺序的routeNames数组
+- `paths` - 提供routeName到路径配置的映射，会覆盖routeConfigs中设置的路径
+- `backBehavior` - 后退按钮是否应该使tab切换到初始tab？ 如果是，则设置为`initialRoute`，否则为`none`。 默认为`initialRoute`
 
 ### Supported Actions
 
-The tabs router may respond to the following navigation actions. The router will generally delegate the action handling to a child router, if possible.
+tabs路由器可能会响应以下导航操作。 如果可能，路由器通常会将动作处理委派给子路由器。
 
-- Navigate - Will jump to the routeName if it matches a tab
-- Back - Goes to the first tab, if not already selected
-- SetParams - An action that a screen dispatches to change the params of the current route.
+- Navigate - 将会跳转到与routeName匹配的tab页面
+- Back - 如果当前不是首个tab，将返回到第一个tab
+- SetParams - 页面派发的操作，用于更改当前路由的参数

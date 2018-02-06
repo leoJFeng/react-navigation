@@ -1,17 +1,16 @@
-# Configuring the Header
+# 配置顶部栏
 
-Header is only available for StackNavigator.
+顶部栏只在StackNavigator可用。
 
-In the previous example, we created a StackNavigator to display several screens in our app.
+在之前的例子里，我们在应用里创建了个StackNavigator来展示多个页面。
 
 
-When navigating to a chat screen, we can specify params for the new route by providing them to the navigate function. In this case, we want to provide the name of the person on the chat screen:
+当导航到一个新页面时，我们可以通过`navigation`方法为新路由指定一些参数。在这个案例里，我们想提供聊天页面里的人名。
 
 ```js
 this.props.navigation.navigate('Chat', { user:  'Lucy' });
 ```
-
-The `user` param can be accessed from the chat screen:
+`user`参数能在 `chat`页面访问到。
 
 ```js
 class ChatScreen extends React.Component {
@@ -22,9 +21,9 @@ class ChatScreen extends React.Component {
 }
 ```
 
-### Setting the Header Title
+### 配置顶部标题
 
-Next, the header title can be configured to use the screen param:
+下一步，顶部标题也可以通过参数在页面配置
 
 ```js
 class ChatScreen extends React.Component {
@@ -40,9 +39,9 @@ basic-header
 ```
 
 
-### Adding a Right Button
+### 增加一个右按钮
 
-Then we can add a [`header` navigation option](/docs/navigators/navigation-options#Stack-Navigation-Options) that allows us to add a custom right button:
+接着我们在navigation option里增加一个[`header`](/docs/navigators/navigation-options#Stack-Navigation-Options)，这允许我们增加一个右按钮：
 
 ```js
 static navigationOptions = {
@@ -54,7 +53,7 @@ static navigationOptions = {
 header-button
 ```
 
-The navigation options can be defined with a [navigation prop](/docs/navigators/navigation-prop). Let's render a different button based on the route params, and set up the button to call `navigation.setParams` when pressed.
+navigation options定义时可以带有[`navigation`](/docs/navigators/navigation-prop)参数。让我们渲染一个基于路由参数更改的右按钮，当按钮被点击时调用`navigation.setParams`方法。
 
 ```js
 static navigationOptions = ({ navigation }) => {
@@ -73,17 +72,17 @@ static navigationOptions = ({ navigation }) => {
 };
 ```
 
-Now, the header can interact with the screen route/state:
+现在顶部栏可以跟route和state值互动了。
 
 ```phone-example
 header-interaction
 ```
 
-### Header interaction with screen component
+### 顶部栏和页面组件互动
 
-Sometimes it is necessary for the header to access properties of the screen component such as functions or state.
+有时顶部栏需要获取页面组件属性或者state值。
 
-Let's say we want to create an 'edit contact info' screen with a save button in the header. We want the save button to be replaced by an `ActivityIndicator` while saving.
+譬如我们想创建一个顶部带有保存按钮的编辑联系人信息页面。我们想在按保存按钮后用`ActivityIndicator`将按钮替换调。
 
 ```js
 class EditInfoScreen extends React.Component {
@@ -131,10 +130,8 @@ class EditInfoScreen extends React.Component {
   }
 }
 ```
+**注意**：因为`handleSave`参数只有在页面加载完后才设置，而不是在`navigationOptions`应用时立即生效，所以我们开始先为`Button`的`handleSave`设为为空方法以便加载页面时不会卡顿。
 
-**Note**: Since the `handleSave`-param is only set on component mount it is not immediately available in the `navigationOptions`-function. Before `handleSave` is set we pass down an empty function to the `Button`-component in order to make it render immediately and avoid flickering.
+要看剩余的顶部栏设置请看[navigation options 文档](/docs/navigators/navigation-options#Stack-Navigation-Options)。
 
-
-To see the rest of the header options, see the [navigation options document](/docs/navigators/navigation-options#Stack-Navigation-Options).
-
-As an alternative to `setParams`, you may want to consider using a state management library such as [MobX](https://github.com/mobxjs/mobx) or [Redux](https://github.com/reactjs/redux), and when navigating to a screen, pass an object which contains the data necessary for the screen to render, as well as functions you may want to call that modify the data, make network requests and etc. That way, both your screen component and the static `navbarOptions` block will have access to the object. When following this approach, make sure to consider deep linking, which works best in cases where only javascript primitives are passed as navigation props to your screen. In case when deep linking is necessary, you may use a [higher order component (HOC)](https://reactjs.org/docs/higher-order-components.html) to transform the primitives to the object your screen components expects.
+除了使用`setParams`你也可以考虑使用[MobX](https://github.com/mobxjs/mobx)或者[Redux](https://github.com/reactjs/redux)等状态管理库。当导航到一个新页面时传递一个包含新页面所需要的内容的对象，或者是你在修改数据，请求网络等操作后想回调的方法这样你的页面组件或者静态`navbarOptions`模块都能访问到改对象。当使用这种方法时，请记得考虑深度链接，在只有javascript基元作为属性传递时效果最好。当如果要考虑深度链接时，你可以使用[higher order component (HOC)](https://reactjs.org/docs/higher-order-components.html)来传递你页面想要的元素。

@@ -1,12 +1,12 @@
 # Deep Linking
 
-In this guide we will set up our app to handle external URIs. Let's start with the SimpleApp that [we created in the getting started guide](/docs/intro).
+在本教程中我们会建一个app处理外部链接。让我们以[开始教程里的SimpleApp](/docs/intro)开始吧。
 
-In this example, we want a URI like `mychat://chat/Taylor` to open our app and link straight into Taylor's chat page.
+在这个例子中，我们想要一个类似`mychat://chat/Taylor` 的链接来打开我们的app以及直接跳转到Taylor的聊天页面里。
 
-## Configuration
+## 配置
 
-Previously, we had defined a navigator like this:
+之前我们是这样定义一个导航的：
 
 ```js
 const SimpleApp = StackNavigator({
@@ -14,8 +14,7 @@ const SimpleApp = StackNavigator({
   Chat: { screen: ChatScreen },
 });
 ```
-
-We want paths like `chat/Taylor` to link to a "Chat" screen with the `user` passed as a param. Let's re-configure our chat screen with a `path` that tells the router what relative path to match against, and what params to extract. This path spec would be `chat/:user`.
+我们想像`chat/Taylor`可以链接到"Chat"页面还带有`user`参数。让我们重新定义我们的Chat页面增加一个`path`来告诉路由如何将路径匹配，以及参数具体定义。路径会被指定为`chat/：user`。
 
 ```js
 const SimpleApp = StackNavigator({
@@ -30,7 +29,7 @@ const SimpleApp = StackNavigator({
 
 ### URI Prefix
 
-Next, let's configure our navigation container to extract the path from the app's incoming URI. 
+下一步我们来配置导航页面来提取URI路径。
 
 ```js
 const SimpleApp = StackNavigator({...});
@@ -43,7 +42,7 @@ const MainApp = () => <SimpleApp uriPrefix={prefix} />;
 
 ## iOS
 
-Let's configure the native iOS app to open based on the `mychat://` URI scheme.
+让我们在原生iOS里配置一下来打开`mychat://`的URI scheme。
 
 In `SimpleApp/ios/SimpleApp/AppDelegate.m`:
 
@@ -60,29 +59,29 @@ In `SimpleApp/ios/SimpleApp/AppDelegate.m`:
 }
 ```
 
-In Xcode, open the project at `SimpleApp/ios/SimpleApp.xcodeproj`. Select the project in sidebar and navigate to the info tab. Scroll down to "URL Types" and add one. In the new URL type, set the identifier and the url scheme to your desired url scheme.
+在Xcode里，打开`SimpleApp/ios/SimpleApp.xcodeproj`项目。选择边栏跳转到info页面。滚动到URL Types增加一项，设置`identifier`和`url scheme`为你想要的链接。
 
 ![Xcode project info URL types with mychat added](/assets/xcode-linking.png)
 
-Now you can press play in Xcode, or re-build on the command line:
+现在你可以运行Xcode项目，或者用如下命令重新构建:
 
 ```sh
 react-native run-ios
 ```
 
-To test the URI on the simulator, run the following:
+为了测试模拟器里的URI，运行如下命令：
 
 ```
 xcrun simctl openurl booted mychat://chat/Taylor
 ```
 
-To test the URI on a real device, open Safari and type `mychat://chat/Taylor`.
+为了在真机上测试URI，打开Safari输入`mychat://chat/Taylor`。
 
 ## Android
 
-To configure the external linking in Android, you can create a new intent in the manifest.
+为了配置Android外部链接，你可以在manifest创建一个新的intent。
 
-In `SimpleApp/android/app/src/main/AndroidManifest.xml`, add the new `VIEW` type `intent-filter` inside the `MainActivity` entry:
+在`SimpleApp/android/app/src/main/AndroidManifest.xml`增加新的`View`类型的`intent-filter`到`MainActivity`里:
 
 ```
 <intent-filter>
@@ -94,13 +93,13 @@ In `SimpleApp/android/app/src/main/AndroidManifest.xml`, add the new `VIEW` type
 </intent-filter>
 ```
 
-Now, re-install the app:
+现在重新构建项目：
 
 ```sh
 react-native run-android
 ```
 
-To test the intent handling in Android, run the following:
+为了测试Android处理intent，运行如下代码:
 
 ```
 adb shell am start -W -a android.intent.action.VIEW -d "mychat://mychat/chat/Taylor" com.simpleapp

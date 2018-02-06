@@ -1,12 +1,12 @@
-# Nesting Navigators
+# 嵌套导航器
 
-It is common in mobile apps to compose various forms of navigation. The routers and navigators in React Navigation are composable, which allows you to define a complicated navigation structure for your app.
+手机应用中有多种类型的导航同时存在是很常见的。React Navigation里的路由和导航器都是可组合的，这允许你为自己的应用定义复杂的导航结构。
 
-For our chat app, we want to put several tabs on the first screen, to view recent chat threads or all contacts.
+在本案的聊天应用里，我们会在第一个页面放置多个Tabs来展示最近聊天和所有联系人。
 
-## Introducing Tab Navigator
+## Tab Navigator介绍
 
-Lets create a new `TabNavigator` in our `App.js`:
+让我们在`App.js`里创造一个新的`TabNavigator`。
 
 ```js
 import { TabNavigator } from "react-navigation";
@@ -29,7 +29,7 @@ const MainScreenNavigator = TabNavigator({
 });
 ```
 
-If the `MainScreenNavigator` was rendered as the top-level navigator component, it would look like this:
+如果`MainScreenNavigator`是在导航器的最上层，那应用应该如下展示:
 
 ```phone-example
 simple-tabs
@@ -37,11 +37,11 @@ simple-tabs
 
 
 
-## Nesting a Navigator in a screen
+## 在页面里嵌套导航器
 
-We want these tabs to be visible in the first screen of the app, but new screens in the stack should cover the tabs.
+我们想让这些Tabs在app的首页里展示出来，但新的页面能够覆盖在Tabs之上。
 
-Lets add our tabs navigator as a screen in our top-level `StackNavigator` that we set up in the [previous step](/docs/intro/).
+让我们在[之前设置好](/docs/intro/)的`StackNavigator`最上层将Tabs页面添加进来。
 
 ```js
 const SimpleApp = StackNavigator({
@@ -50,7 +50,7 @@ const SimpleApp = StackNavigator({
 });
 ```
 
-Because `MainScreenNavigator` is being used as a screen, we can give it `navigationOptions`:
+因为`MainScreenNavigator`被当作一个screen页面，所以我们可以配置`navigationOptions`。
 
 ```js
 const SimpleApp = StackNavigator({
@@ -64,7 +64,7 @@ const SimpleApp = StackNavigator({
 })
 ```
 
-Lets also add a button to each tab that links to a chat:
+让我们在每个Tab页面增加一个按钮来链接对话页面：
 
 ```js
 <Button
@@ -73,14 +73,14 @@ Lets also add a button to each tab that links to a chat:
 />
 ```
 
-Now we have put one navigator inside another, and we can `navigate` between navigators:
+现在我们可以将一个导航器放在另一个导航器里了，我们可以通过`navigate`方法在不同导航器里跳转：
 
 ```phone-example
 nested
 ```
 
-## Nesting a Navigator in a Component
-Sometimes it is desirable to nest a navigator that is wrapped in a component. This is useful in cases where the navigator only takes up part of the screen. For the child navigator to be wired into the navigation tree, it needs the `navigation` property from the parent navigator.
+## 在组件里嵌套导航器
+有时我们需要在组件里嵌套导航器。这在导航器仅占屏幕一部分时是很常用的。为子导航器能够链接到导航树中，我们需要从父类将`navigation`属性传递下去。
 
 ```js
 const SimpleApp = StackNavigator({
@@ -88,9 +88,9 @@ const SimpleApp = StackNavigator({
   Chat: { screen: ChatScreen },
 });
 ```
-In this case, the NavigatorWrappingScreen is not a navigator, but it renders a navigator as part of its output.
+在本例里NavigatorWrappingScreen不是一个导航器，但它会将导航器作为自己一部分渲染出来。
 
-If this navigator renders blank then change `<View>` to `<View style={{flex: 1}}>`.
+如果这个导航器渲染为空白，那么请将 `<View>` 改为 `<View style={{flex: 1}}>`.
 
 ```js
 class NavigatorWrappingScreen extends React.Component {
@@ -105,7 +105,7 @@ class NavigatorWrappingScreen extends React.Component {
 }
 ```
 
-To wire `MainScreenNavigator` into the navigation tree, we assign its `router` to the wrapping component. This makes `NavigatorWrappingScreen` "navigation aware", which tells the parent navigator to pass the navigation object down. Since the `NavigatorWrappingScreen`'s `router` is overridden with the child navigator's `router`, the child navigator will receive the needed `navigation`.
+为了将`MainScreenNavigator`连接到导航树里，我们将它的路由分配给子组件里。这样就使得`NavigatorWrappingScreen` “导航可感知”，这会告诉父导航器将`navigation`对象传递下去。因为`NavigatorWrappingScreen`的路由已经被子导航器覆盖了，所以子导航器会收到必要的`navigation`。
 
 ```js
 class NavigatorWrappingScreen extends React.Component {

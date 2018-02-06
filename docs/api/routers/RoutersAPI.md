@@ -1,6 +1,6 @@
 ## Custom Router API
 
-You can make your own router by building an object with the following functions:
+你可以通过如下方法建立一个对象设计你自己的路由:
 
 ```js
 const MyRouter = {
@@ -25,9 +25,9 @@ class MyNavigator extends React.Component {
 
 ### `getStateForAction(action, state)`
 
-Defines the navigation state in response to a given action. This function will be run when an action gets passed into `props.navigation.dispatch(`, or when any of the helper functions are called, like `navigation.navigate(`.
+定义导航状态以响应给定的操作。 当一个动作被传递到`props.navigation.dispatch`或者当任何帮助方法被调用，比如`navigation.navigate`时，这个函数将被运行。
 
-Typically this should return a navigation state, with the following form:
+通常这应该返回一个导航状态，具有以下形式：
 
 ```
 {
@@ -49,14 +49,14 @@ Typically this should return a navigation state, with the following form:
 }
 ```
 
-If the router has handled the action externally, or wants to swallow it without changing the navigation state, this function will return `null`.
+如果路由器在外部处理了该行为，或者想要在不改变导航状态的情况下处理该行为，则该函数将返回`null`。
 
 ### `getComponentForRouteName(routeName)`
 
-Returns the child component or navigator for the given route name.
+返回子组件或者给定路由的导航器
 
-Say a router `getStateForAction` outputs a state like this:
-```js
+使用路由的`getStateForAction`会返回如下一个状态：
+```
 {
   index: 1,
   routes: [
@@ -66,31 +66,31 @@ Say a router `getStateForAction` outputs a state like this:
 }
 ```
 
-Based on the routeNames in the state, the router is responsible for returning valid components when calling `router.getComponentForRouteName('Foo')` or `router.getComponentForRouteName('Bar')`.
+基于状态的路由名，当使用`router.getComponentForRouteName('Foo')` 或者`router.getComponentForRouteName('Bar')`路由有责任返回组件实际名字：
 
 ### `getComponentForState(state)`
 
-Returns the active component for a deep navigation state.
+返回当前组件深层导航状态
 
 ### `getActionForPathAndParams(path, params)`
 
-Returns an optional navigation action that should be used when the user navigates to this path and provides optional query parameters.
+当用户导航到改路径和提供了需要的参数时返回一个可选的导航action
 
 ### `getPathAndParamsForState(state)`
 
-Returns the path and params that can be put into the URL to link the user back to the same spot in the app.
+返回一个可以放进URL里的路径和参数用来链接用户返回到app相同点的时候
 
-The path/params that are output from this should form an action when passed back into the router's `getActionForPathAndParams`. That action should take you to a similar state once passed through `getStateForAction`.
+返回的路径和参数当传回路由的`getActionForPathAndParams`时应该形成一个action。该action一旦使用`getStateForAction`会返回一个熟悉的状态
 
 ### `getScreenOptions(navigation, screenProps)`
 
-Used to retrieve the navigation options for a screen. Must provide the screen's current navigation prop and optionally, other props that your navigation options may need to consume.
+用于页面检索导航选项。必须提供当前页面的导航属性和选项，以及其他你的导航选项需要的属性
 
-- `navigation` - This is the navigation prop that the screen will use, where the state refers to the screen's route/state. Dispatch will trigger actions in the context of that screen.
-- `screenProps` - Other props that your navigation options may need to consume
-- `navigationOptions` - The previous set of options that are default or provided by the previous configurer
+- `navigation` - 这是页面将使用的导航属性，其中状态是指页面的路由/状态。 使用时将触发该页面上下文中的操作。
+- `screenProps` - 其他你的导航选项所要使用的属性
+- `navigationOptions` -  默认是之前的一组操作选项或者由之前的配置提供
 
-Inside an example view, perhaps you need to fetch the configured title:
+在下列示例中，也许你需要获取配置标题：
 ```js
 // First, prepare a navigation prop for your child, or re-use one if already available.
 const screenNavigation = addNavigationHelpers({

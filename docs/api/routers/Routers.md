@@ -1,11 +1,11 @@
 # Routers
 
-Routers define a component's navigation state, and they allow the developer to define paths and actions that can be handled.
+路由定义了一个组件的导航状态，它允许开发者定义自己的路径和事件来处理。
 
 
 ## Built-In Routers
 
-`react-navigation` ships with a few standard routers:
+`react-navigation` 有如下几个标准路由：
 
 - [StackRouter](/docs/routers/stack)
 - [TabRouter](/docs/routers/tab)
@@ -13,7 +13,7 @@ Routers define a component's navigation state, and they allow the developer to d
 
 ## Using Routers
 
-To make a navigator manually, put a static `router` on a component. (To quickly make a navigator with a built-in component, it may be easier to use a [built-in navigator](/docs/navigators) instead)
+要手动创建导航器，请在组件上放置一个静态`router`。 （要快速制作带有内置组件的导航器，可以使用[内置导航器](/docs/navigators)来代替）
 
 ```js
 class MyNavigator extends React.Component {
@@ -22,16 +22,16 @@ class MyNavigator extends React.Component {
 }
 ```
 
-Now you can use this component as a `screen` in another navigator, and the navigation logic for `MyNavigator` will be defined by this `StackRouter`.
+现在你可以将组件当作`screen`在另一个导航器使用。`MyNavigator`导航器的逻辑取决于`StackRouter`。
 
 
 ## Customizing Routers
 
-See the [Custom Router API spec](/docs/routers/api) to learn about the API of `StackRouter` and `TabRouter`. You can override the router functions as you see fit:
+查看[Custom Router API spec](/docs/routers/api) 来学习`StackRouter`和`TabRouter`的API。你可以根据需要复写路由的方法：
 
 ### Custom Navigation Actions
 
-To override navigation behavior, you can override the navigation state logic in `getStateForAction`, and manually manipulate the `routes` and `index`.
+要覆盖导航行为，可以覆写`getStateForAction`中的导航状态逻辑，并手动操作`routes`和`index`。
 
 ```js
 const MyApp = StackNavigator({
@@ -62,7 +62,7 @@ MyApp.router.getStateForAction = (action, state) => {
 
 ### Blocking Navigation Actions
 
-Sometimes you may want to prevent some navigation activity, depending on your route.
+有时你想要阻止某些导航行为，这取决于你的路由：
 
 ```js
 import { NavigationActions } from 'react-navigation'
@@ -94,7 +94,7 @@ MyStackRouter.router.getStateForAction = (action, state) => {
 
 ### Handling Custom URIs
 
-Perhaps your app has a unique URI which the built-in routers cannot handle. You can always extend the router `getActionForPathAndParams`.
+也许你的app有一些独特的URI是内置路由无法处理的。你总是可以继承路由的`getActionForPathAndParams`。
 
 ```js
 
