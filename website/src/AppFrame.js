@@ -29,7 +29,10 @@ const NavigationLinks = ({ navigation, className, reverse }) => {
       Demo
     </a>,
 
-    <a href="https://github.com/react-community/react-navigation" key="github">
+    <a
+      href="https://github.com/leoJFeng/react-navigation/tree/website-translation"
+      key="github"
+    >
       GitHub
     </a>,
   ];

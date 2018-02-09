@@ -1,4 +1,4 @@
-# 配置顶部栏
+# Configuring the Header
 
 顶部栏只在StackNavigator可用。
 
@@ -21,7 +21,7 @@ class ChatScreen extends React.Component {
 }
 ```
 
-### 配置顶部标题
+### Setting the Header Title
 
 下一步，顶部标题也可以通过参数在页面配置
 
@@ -39,7 +39,7 @@ basic-header
 ```
 
 
-### 增加一个右按钮
+### Adding a Right Button
 
 接着我们在navigation option里增加一个[`header`](/docs/navigators/navigation-options#Stack-Navigation-Options)，这允许我们增加一个右按钮：
 
@@ -78,7 +78,7 @@ static navigationOptions = ({ navigation }) => {
 header-interaction
 ```
 
-### 顶部栏和页面组件互动
+### Header和页面组件互动
 
 有时顶部栏需要获取页面组件属性或者state值。
 

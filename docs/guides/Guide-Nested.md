@@ -1,4 +1,4 @@
-# 嵌套导航器
+# Nesting Navigators
 
 手机应用中有多种类型的导航同时存在是很常见的。React Navigation里的路由和导航器都是可组合的，这允许你为自己的应用定义复杂的导航结构。
 
@@ -37,7 +37,7 @@ simple-tabs
 
 
 
-## 在页面里嵌套导航器
+## Nesting a Navigator in a screen
 
 我们想让这些Tabs在app的首页里展示出来，但新的页面能够覆盖在Tabs之上。
 
@@ -79,7 +79,7 @@ const SimpleApp = StackNavigator({
 nested
 ```
 
-## 在组件里嵌套导航器
+## Nesting a Navigator in a Component
 有时我们需要在组件里嵌套导航器。这在导航器仅占屏幕一部分时是很常用的。为子导航器能够链接到导航树中，我们需要从父类将`navigation`属性传递下去。
 
 ```js

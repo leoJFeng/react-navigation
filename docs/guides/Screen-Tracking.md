@@ -1,8 +1,8 @@
-## 页面跟踪和分析
+## Screen tracking and analytics
 
 项目示例会展示如何做页面跟踪和发送到谷歌分析。该方法兼容任意移动端分析SDK。
 
-### 页面跟踪
+### Screen Tracking
 
 当我们使用navigation建立页面时，我们可以使用`onNavigationStateChange`来跟踪页面。
 

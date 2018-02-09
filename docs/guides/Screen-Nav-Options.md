@@ -3,7 +3,7 @@
 
 每个页面都可以在父页面里配置几个关于如何展示的属性。
 
-#### 两种指定每个选项的方法
+#### Two Ways to specify each option
 
 **静态配置：** 每个导航选项都可以直接配置：
 
@@ -42,7 +42,7 @@ screenProps属性会在页面渲染时传递下来。如果页面是如下配置
 />
 ```
 
-#### 通用导航配置
+#### 通用Navigation配置
 
 每个导航页的`title`属性都是通用的，它会被用作设置为每个页面的标题。
 
@@ -56,7 +56,7 @@ class MyScreen extends React.Component {
 
 不像其他导航选项只能被导航页面使用，title选项可以被应用来更新浏览器标题或者 app switcher。
 
-#### 默认的导航选项
+#### 默认Navigation选项
 
 在页面设置`navigationOptions`是很常用的，但有时我们也会在导航器上设置该属性。
 

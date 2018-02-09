@@ -1,10 +1,10 @@
-# 导航器
+# Navigators
 
 导航器允许你定义自己的导航结构。导航器同时也可以让你配置通用元素譬如头部栏或者tabbar等。
 
 在底层导航器也被解析为React组件。
 
-## 导航器创建
+## 内置Navigators
 
 `react-navigation`包含如下几个方法来帮助你创建导航器：
 
@@ -12,7 +12,7 @@
 - [TabNavigator](/docs/navigators/tab) - 渲染一个标签栏页面让用户可以在几个页面间切换
 - [DrawerNavigator](/docs/navigators/drawer) - 渲染一个抽屉页面，可以从屏幕左边滑出
 
-## 渲染一个带有导航器的页面
+## 渲染一个带有Navigator的页面
 
 导航器渲染的screens仅仅是React组件
 
@@ -20,7 +20,7 @@
 - [Screen `navigation`](/docs/navigators/navigation-prop) 属性允许页面发起导航行为，譬如打开新页面
 - [Screen `navigationOptions`](/docs/navigators/navigation-options) 定制导航的页面展示方式（标题，标签等）
 
-### 顶部组件使用导航
+### Calling Navigate on Top Level Component
 
 如果你想在相同层级使用导航器，你可以使用react的[`ref`](https://facebook.github.io/react/docs/refs-and-the-dom.html#the-ref-callback-attribute)项：
 
@@ -45,7 +45,7 @@ class App extends React.Component {
 ```
 要注意这种解决方法仅仅在导航器顶层可以使用。
 
-## 导航容器
+## Navigation Containers
 
 内部的导航器即使navigation属性丢失也可以像顶层导航器一样工作。此原理是因为提供了一个隐形的导航容器，而这也是顶层的navigation属性的来源。
 

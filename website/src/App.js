@@ -400,17 +400,17 @@ const NotFoundError = () => (
 const App = createNavigator(
   TabRouter({
     Home: {
-      screen: HomePage,
+      screen: DocsPage,
       path: '',
     },
     Docs: {
       screen: DocsPage,
       path: 'docs',
     },
-    Blog: {
-      screen: BlogPage,
-      path: 'blog',
-    },
+    // Blog: {
+    //   screen: BlogPage,
+    //   path: 'blog',
+    // },
     NotFound: {
       screen: NotFoundError,
       navigationOptions: {

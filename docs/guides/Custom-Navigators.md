@@ -26,7 +26,7 @@ class MyNavigator extends React.Component {
 }
 ```
 
-## 导航属性
+## Navigation Props
 
 通过导航器传递下来的`navigation`属性仅包括`state`和`dispatch`。这是导航器的当前状态和分发事件的请求。
 

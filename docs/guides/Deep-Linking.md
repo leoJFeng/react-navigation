@@ -4,7 +4,7 @@
 
 在这个例子中，我们想要一个类似`mychat://chat/Taylor` 的链接来打开我们的app以及直接跳转到Taylor的聊天页面里。
 
-## 配置
+## Configuration
 
 之前我们是这样定义一个导航的：
 

@@ -2,7 +2,7 @@
 
 让我们来用React Navigation建立一个Android iOS通用的仿聊天应用吧。
 
-## 开始安装
+## Setup and Installation
 
 首先请确保你已经[正确配置使用React Native](http://facebook.github.io/react-native/docs/getting-started.html)。然后创建一个新的项目以及添加`react-navigation`。
 

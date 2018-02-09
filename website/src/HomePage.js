@@ -9,7 +9,7 @@ import Link from './Link';
 const GettingStartedButton = () => (
   <div className="cta-row">
     <Link className="cta" to="GettingStarted">
-      <span className="label">Get Started</span>
+      <span className="label">开始</span>
       <span className="icon pt-icon-arrow-right" />
     </Link>
   </div>
@@ -180,11 +180,8 @@ class HomePage extends Component {
 
           <div className="section">
             <div className="section-inner">
-              <h1>Easy-to-Use Navigators</h1>
-              <h3>
-                Start quickly with built-in navigators that deliver a seamless
-                out-of-the box experience.
-              </h3>
+              <h1>易于使用的导航器</h1>
+              <h3>通过内置导航器快速开始，并提供无缝开箱即用的体验。</h3>
 
               <StackExampleBrowser />
             </div>
@@ -192,10 +189,9 @@ class HomePage extends Component {
 
           <div className="section alt">
             <div className="section-inner">
-              <h1>Components built for iOS and Android</h1>
+              <h1>为iOS and Android创建的组件</h1>
               <h3>
-                Navigation views that deliver 60fps animations, and utilize
-                native components to deliver a great look and feel.
+                导航页面可以提供60帧的动画，并利用本地组件提供美观舒适的感受。
               </h3>
 
               <TabExampleBrowser alt />
@@ -204,11 +200,10 @@ class HomePage extends Component {
 
           <div className="section">
             <div className="section-inner">
-              <h1>Routers built for the future</h1>
+              <h1>面向未来的路由</h1>
               <h3>
-                Routers define the relationship between URIs, actions, and
-                navigation state. Share navigation logic between mobile apps,
-                web apps, and server rendering.
+                路由器定义了URI，actions和导航状态之间的关系。
+                在移动应用，Web应用和服务器呈现之间共享了导航逻辑。
               </h3>
               <GettingStartedButton />
             </div>

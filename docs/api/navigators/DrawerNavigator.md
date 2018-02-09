@@ -81,7 +81,7 @@ this.props.navigation.navigate('DrawerToggle');
 DrawerNavigator(RouteConfigs, DrawerNavigatorConfig)
 ```
 
-### 路由配置
+### RouteConfigs
 
 路由配置表是指路由命名到配置的映射，导航器从中知道要路由的页面。具体查看`StackNavigator`中的[例子](/docs/api/navigators/StackNavigator.md#routeconfigs)
 

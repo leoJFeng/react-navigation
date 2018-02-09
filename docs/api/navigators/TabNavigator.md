@@ -75,7 +75,7 @@ const MyApp = TabNavigator({
 TabNavigator(RouteConfigs, TabNavigatorConfig)
 ```
 
-### 路由配置
+### RouteConfigs
 
 路由配置表是指路由命名到配置的映射，导航器从中知道要路由的页面。具体查看StackNavigator中的[例子](/docs/api/navigators/StackNavigator.md#routeconfigs)。
 
@@ -140,7 +140,7 @@ tabBarOptions: {
 - `style` - 标签栏的样式
 - `allowFontScaling` - 标签字体是否允许缩放以响应辅助功能里的文字设置，默认为true
 
-例子:
+### Examples
 
 ```js
 tabBarOptions: {

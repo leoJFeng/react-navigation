@@ -38,7 +38,7 @@ const ModalStack = StackNavigator({
 StackNavigator(RouteConfigs, StackNavigatorConfig)
 ```
 
-### 路由配置
+### RouteConfigs
 
 路由配置表是指路由命名到配置的映射，导航器从中知道要路由的页面。
 
@@ -181,7 +181,7 @@ Android顶部栏点击颜色
  />
  ```
 
-### 例子
+### Examples
 
 查看 [SimpleStack.js](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/SimpleStack.js) 和 [ModalStack.js](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/ModalStack.js) 这些你可以在本地作为[NavigationPlayground](https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground)应用跑起来的例子。
 

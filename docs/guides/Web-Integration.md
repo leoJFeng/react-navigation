@@ -11,6 +11,6 @@ React Navigation路由可以在网页工作以及允许你分享本地app的导�
 要查看这些app是如何在网上展示的，查看[Server.js](https://github.com/react-community/react-navigation/blob/master/website/src/Server.js)。在浏览器里app会打开并渲染[BrowserAppContainer.js](https://github.com/react-community/react-navigation/blob/master/website/src/BrowserAppContainer.js).
 
 
-## 更多将至
+## More Coming Soon
 
 很快这个教程会被更全面的react-navigation使用方法替代。
