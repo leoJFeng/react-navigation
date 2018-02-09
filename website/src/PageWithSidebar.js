@@ -130,7 +130,7 @@ class PageWithSidebar extends Component {
             <hr />
             {state.routeName === 'Docs' && (
               <Link
-                href={`https://github.com/react-community/react-navigation/tree/master/docs/${docPath}`}
+                href={`https://github.com/leoJFeng/react-navigation/blob/website-translation/docs/${docPath}`}
                 className="editLink"
               >
                 {' '}

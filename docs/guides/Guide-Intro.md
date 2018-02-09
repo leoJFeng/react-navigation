@@ -1,13 +1,13 @@
-# 介绍
+# Introduction
 
 _Learn once, navigate anywhere._
 
-React Navigation 是由ReactNative社区基于Javascipt写的易用可扩展性导航器组件。
+React Navigation 是由ReactNative社区基于Javascipt开发的易用可扩展性导航器组件。
 
-React Navigation是Facebook,Expo以及React 社区共同合作的成果，它是从几种不同导航器库譬如Ex-Navigation,ReactNative’s Navigator以及NavigationExperimental components提炼而成。
+React Navigation是Facebook,Expo以及React社区开发者共同合作的成果，它取代并改进了包括Ex-Navigation,ReactNative’s Navigator以及NavigationExperimental components等多个导航库。
 
 
-## 开始
+## Getting Started
 
 如果你已经熟悉ReactNative那在很短时间内就能够掌握ReactNavigation
 

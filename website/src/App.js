@@ -68,7 +68,7 @@ const GuideDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Guide-Intro',
         title: 'Introduction',
-        linkName: 'Introduction',
+        linkName: '介绍',
       }),
       path: '',
     },
@@ -76,7 +76,7 @@ const GuideDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Guide-Quick-Start',
         title: 'Quick Start',
-        linkName: 'Quick Start',
+        linkName: '快速开始',
       }),
       path: 'quick-start',
     },
@@ -92,7 +92,7 @@ const GuideDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Guide-Nested',
         title: 'Nesting Navigators',
-        linkName: 'Nesting Navigators',
+        linkName: '导航器嵌套',
       }),
       path: 'nesting',
     },
@@ -100,7 +100,7 @@ const GuideDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Guide-Headers',
         title: 'Configuring Headers',
-        linkName: 'Configuring Headers',
+        linkName: '顶部栏配置',
       }),
       path: 'headers',
     },
@@ -118,7 +118,7 @@ const GuidesDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Redux-Integration',
         title: 'Redux Integration Guide',
-        linkName: 'Redux Integration',
+        linkName: 'Redux整合',
       }),
       path: 'redux',
     },
@@ -126,7 +126,7 @@ const GuidesDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Web-Integration',
         title: 'Web Integration Guide',
-        linkName: 'Web Integration',
+        linkName: 'Web整合',
       }),
       path: 'web',
     },
@@ -142,7 +142,7 @@ const GuidesDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Screen-Tracking',
         title: 'Screen tracking and analytics',
-        linkName: 'Screen Tracking',
+        linkName: '页面跟踪',
       }),
       path: 'screen-tracking',
     },
@@ -150,7 +150,7 @@ const GuidesDocs = createNavigator(
       screen: createDocPage({
         doc: 'CONTRIBUTING',
         title: 'Contributors Guide',
-        linkName: 'Contributors',
+        linkName: '贡献者指南',
       }),
       path: 'contributors',
     },
@@ -168,7 +168,7 @@ const NavigatorsDocs = createNavigator(
       screen: createDocPage({
         doc: 'api/navigators/Navigators',
         title: 'Intro to Navigators',
-        linkName: 'Intro to Navigators',
+        linkName: '导航器介绍',
       }),
       path: '',
     },
@@ -200,7 +200,7 @@ const NavigatorsDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Screen-Navigation-Prop',
         title: 'The Navigation Prop',
-        linkName: 'The Navigation Prop',
+        linkName: '导航器属性',
       }),
       path: 'navigation-prop',
     },
@@ -208,7 +208,7 @@ const NavigatorsDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Navigation-Actions',
         title: 'Navigation Actions',
-        linkName: 'Navigation Actions',
+        linkName: '导航器Actions',
       }),
       path: 'navigation-actions',
     },
@@ -216,7 +216,7 @@ const NavigatorsDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Screen-Nav-Options',
         title: 'Screen Nav Options',
-        linkName: 'Screen Nav Options',
+        linkName: '页面导航选项',
       }),
       path: 'navigation-options',
     },
@@ -224,7 +224,7 @@ const NavigatorsDocs = createNavigator(
       screen: createDocPage({
         doc: 'guides/Custom-Navigators',
         title: 'Custom Navigators',
-        linkName: 'Custom Navigators',
+        linkName: '自定义导航器',
       }),
       path: 'custom',
     },
@@ -242,7 +242,7 @@ const RoutersDocs = createNavigator(
       screen: createDocPage({
         doc: 'api/routers/Routers',
         title: 'Routers',
-        linkName: 'Routers',
+        linkName: '路由',
       }),
       path: '',
     },
@@ -250,7 +250,7 @@ const RoutersDocs = createNavigator(
       screen: createDocPage({
         doc: 'api/routers/RoutersAPI',
         title: 'Router API',
-        linkName: 'Custom Router API',
+        linkName: '自定义路由API',
       }),
       path: 'api',
     },
@@ -284,7 +284,7 @@ const ViewsDocs = createNavigator(
       screen: createDocPage({
         doc: 'api/views/Views',
         title: 'Views',
-        linkName: 'Navigation Views',
+        linkName: '导航页面',
       }),
       path: '',
     },

@@ -1,4 +1,4 @@
-# 快速指南
+# Quick Start Guide
 
 想要应用React Navigation，首先你要做的就是通过npm包安装react-navigation。
 
