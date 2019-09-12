@@ -1,5 +1,5 @@
 # Introducing React Navigation for React Native
-9/12, 2019_
+9/12, 2019
 
 Today we're excited to introduce React Navigation, a flexible navigation library for React Native and web, including customizable views for React Native, routers for any platform, and navigators that make it super easy to get started. We aim to provide a simple and extensible solution which enables developers to share one navigation paradigm for all of their React apps.
 
